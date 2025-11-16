@@ -135,11 +135,8 @@ const Vitals = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     {isUrdu ? 'Date' : 'Date'}
                   </label>
-                  <input
-                    type="date"
-                    value={newVital.date}
-                    onChange={(e) => setNewVital({ ...newVital, date: e.target.value })}
-                    className="input-primary"/>
+                  <input type="date" value={newVital.date}
+                    onChange={(e) => setNewVital({ ...newVital, date: e.target.value })} className="input-primary"/>
                 </div>
               </div>
 
