@@ -52,8 +52,7 @@ function App() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="min-h-screen"
-      >
+        className="min-h-screen">
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
@@ -63,16 +62,14 @@ function App() {
               <PublicRoute>
                 <Login />
               </PublicRoute>
-            } 
-          />
+            }  />
           <Route 
             path="/register" 
             element={
               <PublicRoute>
                 <Register />
               </PublicRoute>
-            } 
-          />
+            } />
           
           {/* Protected Routes */}
           <Route 
@@ -81,24 +78,21 @@ function App() {
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
-            } 
-          />
+            } />
           <Route 
             path="/reports" 
             element={
               <ProtectedRoute>
                 <Reports />
               </ProtectedRoute>
-            } 
-          />
+            }/>
           <Route 
             path="/reports/upload" 
             element={
               <ProtectedRoute>
                 <UploadReport />
               </ProtectedRoute>
-            } 
-          />
+            }/>
           <Route 
             path="/reports/:id" 
             element={
@@ -113,16 +107,14 @@ function App() {
               <ProtectedRoute>
                 <Vitals />
               </ProtectedRoute>
-            } 
-          />
+            }/>
           <Route 
             path="/profile" 
             element={
               <ProtectedRoute>
                 <Profile />
               </ProtectedRoute>
-            } 
-          />
+            } />
           
           {/* Catch all route */}
           <Route path="*" element={<Navigate to="/" replace />} />
