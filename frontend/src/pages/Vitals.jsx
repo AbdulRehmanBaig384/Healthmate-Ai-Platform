@@ -148,8 +148,7 @@ const Vitals = () => {
                   <select
                     value={newVital.time}
                     onChange={(e) => setNewVital({ ...newVital, time: e.target.value })}
-                    className="input-primary"
-                  >
+                    className="input-primary">
                     <option value="morning">{isUrdu ? 'Morning' : 'Morning'}</option>
                     <option value="afternoon">{isUrdu ? 'Afternoon' : 'Afternoon'}</option>
                     <option value="evening">{isUrdu ? 'Evening' : 'Evening'}</option>
@@ -171,8 +170,7 @@ const Vitals = () => {
                           ...newVital,
                           value: { ...newVital.value, systolic: e.target.value }
                         })}
-                        className="input-primary flex-1"
-                      />
+                        className="input-primary flex-1"/>
                       <span className="flex items-center text-gray-500">/</span>
                       <input
                         type="number"
@@ -182,8 +180,7 @@ const Vitals = () => {
                           ...newVital,
                           value: { ...newVital.value, diastolic: e.target.value }
                         })}
-                        className="input-primary flex-1"
-                      />
+                        className="input-primary flex-1"/>
                     </div>
                   ) : (
                     <input
@@ -194,8 +191,7 @@ const Vitals = () => {
                         ...newVital,
                         value: { ...newVital.value, reading: e.target.value }
                       })}
-                      className="input-primary"
-                    />
+                      className="input-primary"/>
                   )}
                 </div>
               </div>
@@ -209,22 +205,19 @@ const Vitals = () => {
                   onChange={(e) => setNewVital({ ...newVital, notes: e.target.value })}
                   className="input-primary"
                   rows="3"
-                  placeholder={isUrdu ? 'Additional notes...' : 'Additional notes...'}
-                />
+                  placeholder={isUrdu ? 'Additional notes...' : 'Additional notes...'}/>
               </div>
 
               <div className="flex space-x-4">
                 <button
                   type="button"
                   onClick={() => setShowAddForm(false)}
-                  className="btn-ghost flex-1"
-                >
+                  className="btn-ghost flex-1">
                   {isUrdu ? 'Cancel' : 'Cancel'}
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary flex-1"
-                >
+                  className="btn-primary flex-1">
                   {isUrdu ? 'Add Vital' : 'Add Vital'}
                 </button>
               </div>
@@ -238,8 +231,7 @@ const Vitals = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {vitals.map((vital, index) => {
               const Icon = getVitalIcon(vital.type)
               return (
@@ -248,8 +240,7 @@ const Vitals = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="card card-hover p-6"
-                >
+                  className="card card-hover p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
@@ -300,8 +291,7 @@ const Vitals = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16"
-          >
+            className="text-center py-16">
             <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <Activity className="w-12 h-12 text-gray-400" />
             </div>
@@ -316,8 +306,7 @@ const Vitals = () => {
             </p>
             <button
               onClick={() => setShowAddForm(true)}
-              className="btn-primary inline-flex items-center space-x-2"
-            >
+              className="btn-primary inline-flex items-center space-x-2">
               <Plus className="w-5 h-5" />
               <span>{isUrdu ? 'Add Vital' : 'Add Vital'}</span>
             </button>
