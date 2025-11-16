@@ -32,8 +32,7 @@ const Vitals = () => {
       setVitals([])
     } finally {
       setLoading(false)
-    }
-  }
+    } }
 
   const handleAddVital = async (e) => {
     e.preventDefault()
