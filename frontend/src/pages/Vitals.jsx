@@ -109,8 +109,7 @@ const Vitals = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="card p-6 mb-8"
-          >
+            className="card p-6 mb-8">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
               {isUrdu ? 'New Vital Reading' : 'Add New Vital Reading'}
             </h2>
@@ -123,8 +122,7 @@ const Vitals = () => {
                   <select
                     value={newVital.type}
                     onChange={(e) => setNewVital({ ...newVital, type: e.target.value })}
-                    className="input-primary"
-                  >
+                    className="input-primary">
                     {vitalTypes.map(type => (
                       <option key={type.value} value={type.value}>
                         {type.label}
