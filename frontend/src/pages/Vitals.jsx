@@ -139,8 +139,7 @@ const Vitals = () => {
                     type="date"
                     value={newVital.date}
                     onChange={(e) => setNewVital({ ...newVital, date: e.target.value })}
-                    className="input-primary"
-                  />
+                    className="input-primary"/>
                 </div>
               </div>
 
