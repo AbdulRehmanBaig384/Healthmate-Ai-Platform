@@ -84,8 +84,7 @@ const Vitals = () => {
               <p className="text-lg text-gray-600">
                 {isUrdu 
                   ? 'Apne vital signs track karein'
-                  : 'Track your vital signs'
-                }
+                  : 'Track your vital signs'}
               </p>
             </div>
             <button
@@ -96,7 +95,6 @@ const Vitals = () => {
             </button>
           </div>
         </motion.div>
-
         {/* Add Vital Form */}
         {showAddForm && (
           <motion.div
