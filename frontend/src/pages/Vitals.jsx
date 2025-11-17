@@ -32,7 +32,6 @@ const Vitals = () => {
     } finally {
       setLoading(false)
     } }
-
   const handleAddVital = async (e) => {
     e.preventDefault()
     try {
@@ -50,7 +49,6 @@ const Vitals = () => {
       console.error('Error adding vital:', error)
     }
   }
-
   const vitalTypes = [
     { value: 'blood_pressure', label: isUrdu ? 'Blood Pressure' : 'Blood Pressure', icon: Heart, unit: 'mmHg' },
     { value: 'blood_sugar', label: isUrdu ? 'Blood Sugar' : 'Blood Sugar', icon: Droplets, unit: 'mg/dL' },
