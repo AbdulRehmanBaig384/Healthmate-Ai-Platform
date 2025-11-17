@@ -121,7 +121,6 @@ const Vitals = () => {
                     ))}
                   </select>
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     {isUrdu ? 'Date' : 'Date'}
@@ -130,7 +129,6 @@ const Vitals = () => {
                     onChange={(e) => setNewVital({ ...newVital, date: e.target.value })} className="input-primary"/>
                 </div>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -146,7 +144,6 @@ const Vitals = () => {
                     <option value="night">{isUrdu ? 'Night' : 'Night'}</option>
                   </select>
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     {isUrdu ? 'Reading' : 'Reading'}
