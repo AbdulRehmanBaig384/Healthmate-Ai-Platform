@@ -188,12 +188,9 @@ const Vitals = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {isUrdu ? 'Notes' : 'Notes'}
                 </label>
-                <textarea
-                  value={newVital.notes}
+                <textarea value={newVital.notes} 
                   onChange={(e) => setNewVital({ ...newVital, notes: e.target.value })}
-                  className="input-primary"
-                  rows="3"
-                  placeholder={isUrdu ? 'Additional notes...' : 'Additional notes...'}/>
+                  className="input-primary" rows="3" placeholder={isUrdu ? 'Additional notes...' : 'Additional notes...'}/>
               </div>
 
               <div className="flex space-x-4">
