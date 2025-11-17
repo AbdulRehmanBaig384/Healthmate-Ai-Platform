@@ -17,7 +17,6 @@ const Vitals = () => {
     time: 'morning',
     notes: ''
   })
-
   useEffect(() => {
     fetchVitals()
   }, [])
