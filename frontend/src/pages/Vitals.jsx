@@ -150,9 +150,7 @@ const Vitals = () => {
                   </label>
                   {newVital.type === 'blood_pressure' ? (
                     <div className="flex space-x-2">
-                      <input
-                        type="number"
-                        placeholder="120"
+                      <input type="number" placeholder="120"
                         value={newVital.value.systolic}
                         onChange={(e) => setNewVital({
                           ...newVital,
