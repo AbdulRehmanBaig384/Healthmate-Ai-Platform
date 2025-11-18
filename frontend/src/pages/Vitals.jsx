@@ -166,14 +166,10 @@ const Vitals = () => {
                         className="input-primary flex-1"/>
                     </div>
                   ) : (
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={newVital.value.reading}
+                    <input type="number" step="0.1"  value={newVital.value.reading}
                       onChange={(e) => setNewVital({
                         ...newVital,
-                        value: { ...newVital.value, reading: e.target.value }
-                      })}
+                        value: { ...newVital.value, reading: e.target.value } })}
                       className="input-primary"/>
                   )}
                 </div>
