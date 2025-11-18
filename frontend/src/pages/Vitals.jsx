@@ -160,9 +160,7 @@ const Vitals = () => {
                         })}
                         className="input-primary flex-1"/>
                       <span className="flex items-center text-gray-500">/</span>
-                      <input
-                        type="number"
-                        placeholder="80"
+                      <input type="number" placeholder="80"
                         value={newVital.value.diastolic}
                         onChange={(e) => setNewVital({
                           ...newVital,
