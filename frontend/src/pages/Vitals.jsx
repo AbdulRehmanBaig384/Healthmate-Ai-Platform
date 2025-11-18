@@ -185,8 +185,7 @@ const Vitals = () => {
               </div>
 
               <div className="flex space-x-4">
-                <button
-                  type="button"
+                <button1 type="button"
                   onClick={() => setShowAddForm(false)}
                   className="btn-ghost flex-1">
                   {isUrdu ? 'Cancel' : 'Cancel'}
@@ -241,7 +240,6 @@ const Vitals = () => {
                       {vital.isNormal ? (isUrdu ? 'Normal' : 'Normal') : (isUrdu ? 'Abnormal' : 'Abnormal')}
                     </div>
                   </div>
-
                   <div className="space-y-2">
                     <div className="text-2xl font-bold text-gray-900">
                       {vital.type === 'blood_pressure' 
@@ -290,7 +288,5 @@ const Vitals = () => {
         )}
       </div>
     </div>
-  )
-}
-
+  )}
 export default Vitals
