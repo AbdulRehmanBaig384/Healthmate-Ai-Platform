@@ -2,13 +2,9 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useAuth } from './context/AuthContext'
 import { useLanguage } from './context/LanguageContext'
-
-// Components
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
-
-// Pages
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -36,11 +32,8 @@ const PublicRoute = ({ children }) => {
   
   if (loading) {
     return <LoadingSpinner />
-  }
-  
-  return user ? <Navigate to="/dashboard" replace /> : children
-}
-
+}  
+  return user ? <Navigate to="/dashboard" replace /> : children}
 function App() {
   const { language } = useLanguage()
 
