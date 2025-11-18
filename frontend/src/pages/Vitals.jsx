@@ -278,8 +278,7 @@ const Vitals = () => {
                 : 'Add your first vital reading'
               }
             </p>
-            <button
-              onClick={() => setShowAddForm(true)}
+            <button  onClick={() => setShowAddForm(true)}
               className="btn-primary inline-flex items-center space-x-2">
               <Plus className="w-5 h-5" />
               <span>{isUrdu ? 'Add Vital' : 'Add Vital'}</span>
