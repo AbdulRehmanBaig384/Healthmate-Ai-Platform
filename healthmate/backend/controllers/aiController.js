@@ -99,8 +99,5 @@ const getAIInsights = async (req, res) => {
   }
 };
 
-module.exports = {
-  getHealthTips,
-  getFriendlyMessage,
-  getAIInsights
+module.exports = {getHealthTips, getFriendlyMessage, getAIInsights
 };
