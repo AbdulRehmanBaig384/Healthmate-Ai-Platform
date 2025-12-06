@@ -200,11 +200,4 @@ const logout = async (req, res) => {
   });
 };
 
-module.exports = {
-  register,
-  login,
-  getMe,
-  updateProfile,
-  changePassword,
-  logout
-};
+module.exports = {register,login,getMe,updateProfile,changePassword,logout};
