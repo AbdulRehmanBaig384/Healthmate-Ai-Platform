@@ -270,8 +270,4 @@ const reanalyzeReport = async (req, res) => {
   }
 };
 
-module.exports = {uploadReport, getReports, getReport,
-  updateReport,
-  deleteReport,
-  reanalyzeReport
-};
+module.exports = {uploadReport, getReports, getReport, updateReport, deleteReport, reanalyzeReport};
