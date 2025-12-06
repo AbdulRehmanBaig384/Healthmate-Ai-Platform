@@ -31,9 +31,9 @@ const getHealthTips = async (req, res) => {
     });
   }
 };
-@desc    
-@route  
-@access 
+// @desc    
+// @route  
+// @access 
 const getFriendlyMessage = async (req, res) => {
   try {
     const userLanguage = req.user.language || 'en';
