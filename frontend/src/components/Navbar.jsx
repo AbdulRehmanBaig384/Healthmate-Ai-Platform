@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import {  Menu, X, User, LogOut,  Settings, Heart, FileText, Activity, , Home} from 'lucide-react'
+import {  Menu, X, User, LogOut,  Settings, Heart, FileText, Activity, Home} from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { useLanguage } from '../context/LanguageContext'
 import LanguageToggle from './LanguageToogle'

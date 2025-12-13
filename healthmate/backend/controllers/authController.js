@@ -1,9 +1,5 @@
 const User = require('../models/User');
 const { sendTokenResponse } = require('../middleware/auth');
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 const register = async (req, res) => {
   try {
     const { name, email, password, language } = req.body;
@@ -43,13 +39,9 @@ const login = async (req, res) => {
       return res.status(401).json({
         success: false,
         message: 'Invalid credentials'
-<<<<<<< Updated upstream
       });
     }
-    // Check if password matches
-=======
-      });}
->>>>>>> Stashed changes
+    // Check if password matche
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({
@@ -68,11 +60,6 @@ const login = async (req, res) => {
     });
   }
 };
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -97,10 +84,6 @@ const getMe = async (req, res) => {
     });
   }
 };
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 const updateProfile = async (req, res) => {
   try {
     const { name, language, avatar } = req.body;
@@ -131,10 +114,6 @@ const updateProfile = async (req, res) => {
     });
   }
 };
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 const changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
@@ -162,11 +141,6 @@ const changePassword = async (req, res) => {
     });
   }
 };
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 const logout = async (req, res) => {
   res.cookie('token', 'none', {
     expires: new Date(Date.now() + 10 * 1000),
