@@ -1,9 +1,6 @@
 const User = require('../models/User');
 const { sendTokenResponse } = require('../middleware/auth');
 
-// @desc    Register user
-// @route   POST /api/auth/register
-// @access  Public
 const register = async (req, res) => {
   try {
     const { name, email, password, language } = req.body;
@@ -31,10 +28,6 @@ const register = async (req, res) => {
     });
   }
 };
-
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -56,7 +49,6 @@ const login = async (req, res) => {
         message: 'Invalid credentials'
       });
     }
-
     // Check if password matches
     const isMatch = await user.comparePassword(password);
 
@@ -81,9 +73,7 @@ const login = async (req, res) => {
   }
 };
 
-// @desc    Get current logged in user
-// @route   GET /api/auth/me
-// @access  Private
+
 const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -110,9 +100,6 @@ const getMe = async (req, res) => {
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
-// @access  Private
 const updateProfile = async (req, res) => {
   try {
     const { name, language, avatar } = req.body;
@@ -146,9 +133,6 @@ const updateProfile = async (req, res) => {
   }
 };
 
-// @desc    Change password
-// @route   PUT /api/auth/password
-// @access  Private
 const changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
@@ -185,9 +169,7 @@ const changePassword = async (req, res) => {
   }
 };
 
-// @desc    Logout user / clear cookie
-// @route   POST /api/auth/logout
-// @access  Private
+
 const logout = async (req, res) => {
   res.cookie('token', 'none', {
     expires: new Date(Date.now() + 10 * 1000),
