@@ -21,7 +21,12 @@ const Reports = () => {
   const fetchReports = async () => {
     try {
       setLoading(true)
-      const response = await axios.get('/api/reports')
+      const token = localStorage.getItem('token')
+      const response = await axios.get('/api/reports', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       setReports(response.data.reports || [])
     } catch (error) {
       console.error('Error fetching reports:', error)
@@ -37,7 +42,12 @@ const Reports = () => {
     }
 
     try {
-      await axios.delete(`/api/reports/${reportId}`)
+      const token = localStorage.getItem('token')
+      await axios.delete(`/api/reports/${reportId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       setReports(reports.filter(report => report._id !== reportId))
     } catch (error) {
       console.error('Error deleting report:', error)
@@ -91,8 +101,8 @@ const Reports = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -100,7 +110,7 @@ const Reports = () => {
           className="mb-8" >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl">
                 {isUrdu ? 'Medical Reports' : 'Medical Reports'}
               </h1>
               <p className="text-lg text-gray-600">
@@ -112,7 +122,7 @@ const Reports = () => {
             </div>
             <Link
               to="/reports/upload"
-              className="btn-primary mt-4 md:mt-0 flex items-center space-x-2" >
+              className="flex items-center mt-4 space-x-2 btn-primary md:mt-0" >
               <Plus className="w-5 h-5" />
               <span>{isUrdu ? 'New Report Upload' : 'Upload New Report'}</span>
             </Link>
@@ -124,28 +134,28 @@ const Reports = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="card p-6 mb-8" >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          className="p-6 mb-8 card" >
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {/* Search */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Search className="w-5 h-5 text-gray-400" />
               </div>
               <input type="text" placeholder={isUrdu ? 'Reports search karein...' : 'Search reports...'}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="input-primary pl-10" />
+                className="pl-10 input-primary" />
             </div>
 
             {/* Filter by Type */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Filter className="h-5 w-5 text-gray-400" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Filter className="w-5 h-5 text-gray-400" />
               </div>
               <select
                 value={filterType}
                 onChange={(e) => setFilterType(e.target.value)}
-                className="input-primary pl-10">
+                className="pl-10 input-primary">
                 {reportTypes.map(type => (
                   <option key={type.value} value={type.value}>
                     {type.label}
@@ -155,13 +165,13 @@ const Reports = () => {
             </div>
             {/* Sort */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Calendar className="h-5 w-5 text-gray-400" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Calendar className="w-5 h-5 text-gray-400" />
               </div>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="input-primary pl-10">
+                className="pl-10 input-primary">
                 <option value="date">{isUrdu ? 'Date se sort' : 'Sort by Date'}</option>
                 <option value="title">{isUrdu ? 'Name se sort' : 'Sort by Name'}</option>
                 <option value="type">{isUrdu ? 'Type se sort' : 'Sort by Type'}</option>
@@ -176,18 +186,18 @@ const Reports = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" >
             {sortedReports.map((report, index) => (
               <motion.div
                 key={report._id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="card card-hover p-6" >
+                className="p-6 card card-hover" >
                 {/* Report Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
                       <FileText className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
@@ -205,7 +215,7 @@ const Reports = () => {
                 </div>
 
                 {/* Report Details */}
-                <div className="space-y-3 mb-4">
+                <div className="mb-4 space-y-3">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-500">
                       {isUrdu ? 'Date:' : 'Date:'}
@@ -234,74 +244,81 @@ const Reports = () => {
                         {isUrdu ? 'AI Confidence:' : 'AI Confidence:'}
                       </span>
                       <span className="text-gray-900">
-                        {report.aiAnalysis.confidence}%
+                        {/* {report.aiAnalysis.confidence}% */}
+                        {report.aiAnalysis?.confidence ?? 0}%
+
                       </span>
                     </div>
                   )}
                 </div>
 
                 {/* AI Analysis Preview */}
-                {report.aiAnalysis && (
-                  <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Brain className="w-4 h-4 text-purple-600" />
-                      <span className="text-sm font-medium text-gray-700">
-                        {isUrdu ? 'AI Summary:' : 'AI Summary:'}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 line-clamp-3">
-                      {isUrdu ? report.aiAnalysis.summary.urdu : report.aiAnalysis.summary.english}
-                    </p>
-                  </div>
-                )}
+               {report.aiAnalysis?.summary && (
+  <div className="p-3 mb-4 rounded-lg bg-gray-50">
+    <div className="flex items-center mb-2 space-x-2">
+      <Brain className="w-4 h-4 text-purple-600" />
+      <span className="text-sm font-medium text-gray-700">
+        {isUrdu ? 'AI Summary:' : 'AI Summary:'}
+      </span>
+    </div>
+    <p className="text-sm text-gray-600 line-clamp-3">
+      {isUrdu
+        ? report.aiAnalysis.summary?.urdu ?? 'AI analysis in progress'
+        : report.aiAnalysis.summary?.english ?? 'AI analysis in progress'}
+    </p>
+  </div>
+)}
+
+                
 
                 {/* Action Buttons */}
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-2">
                     <Link
                       to={`/reports/${report._id}`}
-                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      className="p-2 text-blue-600 transition-colors rounded-lg hover:bg-blue-50"
                       title={isUrdu ? 'View Report' : 'View Report'} >
                       <Eye className="w-4 h-4" />
                     </Link>
                     
                     <button
                       onClick={() => window.open(report.fileUrl, '_blank')}
-                      className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                      className="p-2 text-green-600 transition-colors rounded-lg hover:bg-green-50"
                       title={isUrdu ? 'Download' : 'Download'} >
                       <Download className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleDeleteReport(report._id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                      className="p-2 text-red-600 transition-colors rounded-lg hover:bg-red-50"
                       title={isUrdu ? 'Delete' : 'Delete'} >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                   
-                  {report.aiAnalysis && (
-                    <div className="flex items-center space-x-1 text-xs text-gray-500">
-                      <span>{report.aiAnalysis.abnormalValues.length}</span>
-                      <AlertCircle className="w-3 h-3" />
-                    </div>
-                  )}
+                 {report.aiAnalysis?.abnormalValues && (
+  <div className="flex items-center space-x-1 text-xs text-gray-500">
+    <span>{report.aiAnalysis.abnormalValues.length}</span>
+    <AlertCircle className="w-3 h-3" />
+  </div>
+)}
+
                 </div>
               </motion.div>
             ))}
           </motion.div>
         ) : (
-          /* Empty State */
+   
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16">
-            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            className="py-16 text-center" >
+            <div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full">
               <FileText className="w-12 h-12 text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="mb-2 text-xl font-semibold text-gray-900">
               {isUrdu ? 'Koi reports nahi hain' : 'No reports found'}
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="mb-6 text-gray-600">
               {isUrdu 
                 ? 'Apna pehla medical report upload karein aur AI analysis paayein'
                 : 'Upload your first medical report and get AI analysis'
@@ -309,7 +326,7 @@ const Reports = () => {
             </p>
             <Link
               to="/reports/upload"
-              className="btn-primary inline-flex items-center space-x-2" >
+              className="inline-flex items-center space-x-2 btn-primary" >
               <Upload className="w-5 h-5" />
               <span>{isUrdu ? 'Report Upload Karein' : 'Upload Report'}</span>
             </Link>

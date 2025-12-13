@@ -42,37 +42,84 @@ const UploadReport = () => {
     maxSize: 10 * 1024 * 1024 // 10MB
   })
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
     
-    if (!file) {
-      toast.error(isUrdu ? 'Please file select karein' : 'Please select a file')
-      return
-    }
+  //   if (!file) {
+  //     toast.error(isUrdu ? 'Please file select karein' : 'Please select a file')
+  //     return
+  //   }
 
-    setUploading(true)
+  //   setUploading(true)
 
-    try {
-      const uploadData = new FormData()
-      uploadData.append('file', file)
-      uploadData.append('title', formData.title)
-      uploadData.append('type', formData.type)
-      uploadData.append('reportDate', formData.reportDate)
+  //   try {
+  //     const uploadData = new FormData()
+  //     uploadData.append('file', file)
+  //     uploadData.append('title', formData.title)
+  //     uploadData.append('type', formData.type)
+  //     uploadData.append('reportDate', formData.reportDate)
 
-      const response = await axios.post('/api/reports/upload', uploadData, {
+  //     const response = await axios.post('/api/reports/upload', uploadData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data'
+  //       }
+  //     })
+
+  //     toast.success(isUrdu ? 'Report successfully upload ho gaya!' : 'Report uploaded successfully!')
+  //     navigate('/reports')
+  //   } catch (error) {
+  //     console.error('Upload error:', error)
+  //     toast.error(error.response?.data?.message || (isUrdu ? 'Upload failed' : 'Upload failed'))
+  //   } finally {
+  //     setUploading(false)
+  //   } }
+
+
+  const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  if (!file) {
+    toast.error(isUrdu ? 'Please file select karein' : 'Please select a file')
+    return
+  }
+
+  setUploading(true)
+
+  try {
+    const uploadData = new FormData()
+    uploadData.append('file', file) // ✅ correct
+    uploadData.append('title', formData.title)
+    uploadData.append('type', formData.type)
+    uploadData.append('reportDate', formData.reportDate)
+
+    const token = localStorage.getItem('token') // 🔥 IMPORTANT
+
+    const response = await axios.post(
+      '/api/reports/upload',
+      uploadData,
+      {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}` // 🔥 THIS WAS MISSING
         }
-      })
+      }
+    )
 
-      toast.success(isUrdu ? 'Report successfully upload ho gaya!' : 'Report uploaded successfully!')
-      navigate('/reports')
-    } catch (error) {
-      console.error('Upload error:', error)
-      toast.error(error.response?.data?.message || (isUrdu ? 'Upload failed' : 'Upload failed'))
-    } finally {
-      setUploading(false)
-    } }
+    toast.success(
+      isUrdu ? 'Report successfully upload ho gaya!' : 'Report uploaded successfully!'
+    )
+    navigate('/reports')
+  } catch (error) {
+    console.error('Upload error:', error.response?.data || error.message)
+    toast.error(
+      error.response?.data?.message ||
+      (isUrdu ? 'Upload failed' : 'Upload failed')
+    )
+  } finally {
+    setUploading(false)
+  }
+}
+
 
   const reportTypes = [
     { value: 'blood_test', label: isUrdu ? 'Blood Test' : 'Blood Test' },
@@ -89,14 +136,14 @@ const UploadReport = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="max-w-4xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          className="mb-8 text-center">
+          <h1 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
             {isUrdu ? 'Medical Report Upload' : 'Upload Medical Report'}
           </h1>
           <p className="text-lg text-gray-600">
@@ -111,11 +158,11 @@ const UploadReport = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="card p-8" >
+          className="p-8 card" >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* File Upload */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block mb-2 text-sm font-medium text-gray-700">
                 {isUrdu ? 'Report File' : 'Report File'}
               </label>
               <div
@@ -130,8 +177,8 @@ const UploadReport = () => {
                 <input {...getInputProps()} />
                 {file ? (
                   <div className="space-y-2">
-                    <CheckCircle className="w-12 h-12 text-green-500 mx-auto" />
-                    <p className="text-green-700 font-medium">{file.name}</p>
+                    <CheckCircle className="w-12 h-12 mx-auto text-green-500" />
+                    <p className="font-medium text-green-700">{file.name}</p>
                     <p className="text-sm text-green-600">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
@@ -141,13 +188,13 @@ const UploadReport = () => {
                         e.stopPropagation()
                         setFile(null)
                       }}
-                      className="text-red-600 hover:text-red-700 text-sm">
+                      className="text-sm text-red-600 hover:text-red-700">
                       {isUrdu ? 'Remove' : 'Remove'}
                     </button>
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <Upload className="w-12 h-12 text-gray-400 mx-auto" />
+                    <Upload className="w-12 h-12 mx-auto text-gray-400" />
                     <p className="text-gray-600">
                       {isDragActive
                         ? (isUrdu ? 'File drop karein' : 'Drop file here')
@@ -163,7 +210,7 @@ const UploadReport = () => {
             </div>
             {/* Report Title */}
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-700">
                 {isUrdu ? 'Report Title' : 'Report Title'}
               </label>
               <input type="text" id="title" name="title" required value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -173,7 +220,7 @@ const UploadReport = () => {
 
             {/* Report Type */}
             <div>
-              <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="type" className="block mb-2 text-sm font-medium text-gray-700">
                 {isUrdu ? 'Report Type' : 'Report Type'}
               </label>
               <select id="type" name="type" value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value })}
@@ -188,7 +235,7 @@ const UploadReport = () => {
 
             {/* Report Date */}
             <div>
-              <label htmlFor="reportDate" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="reportDate" className="block mb-2 text-sm font-medium text-gray-700">
                 {isUrdu ? 'Report Date' : 'Report Date'}
               </label>
               <input type="date" id="reportDate" name="reportDate" required
@@ -197,11 +244,11 @@ const UploadReport = () => {
             </div>
 
             {/* AI Analysis Info */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="p-4 border border-blue-200 rounded-lg bg-blue-50">
               <div className="flex items-start space-x-3">
                 <Brain className="w-5 h-5 text-blue-600 mt-0.5" />
                 <div>
-                  <h3 className="text-sm font-medium text-blue-900 mb-1">
+                  <h3 className="mb-1 text-sm font-medium text-blue-900">
                     {isUrdu ? 'AI Analysis' : 'AI Analysis'}
                   </h3>
                   <p className="text-sm text-blue-700">
@@ -215,11 +262,11 @@ const UploadReport = () => {
             </div>
 
             {/* Disclaimer */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="p-4 border border-yellow-200 rounded-lg bg-yellow-50">
               <div className="flex items-start space-x-3">
                 <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
                 <div>
-                  <h3 className="text-sm font-medium text-yellow-900 mb-1">
+                  <h3 className="mb-1 text-sm font-medium text-yellow-900">
                     {isUrdu ? 'Important Notice' : 'Important Notice'}
                   </h3>
                   <p className="text-sm text-yellow-700">
@@ -234,13 +281,13 @@ const UploadReport = () => {
               <button
                 type="button"
                 onClick={() => navigate('/reports')}
-                className="btn-ghost flex-1">
+                className="flex-1 btn-ghost">
                 {isUrdu ? 'Cancel' : 'Cancel'}
               </button>
               <button
                 type="submit"
                 disabled={!file}
-                className="btn-primary flex-1 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                className="flex items-center justify-center flex-1 space-x-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
                 <Upload className="w-5 h-5" />
                 <span>{isUrdu ? 'Upload & Analyze' : 'Upload & Analyze'}</span>
               </button>

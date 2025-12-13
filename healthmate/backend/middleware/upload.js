@@ -14,6 +14,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'healthmate/reports',
+    resource_type: 'auto',
     allowed_formats: ['jpg', 'jpeg', 'png', 'pdf'],
     transformation: [
       { quality: 'auto' },

@@ -1,8 +1,4 @@
-const { generateHealthTips, generateFriendlyMessage } = require('../utils/gemini');
-
-// @desc   
-// @route   
-// @access  
+const { generateHealthTips, generateFriendlyMessage,g } = require('../utils/gemini');
 const getHealthTips = async (req, res) => {
   try {
     const userLanguage = req.user.language || 'en';
@@ -31,16 +27,12 @@ const getHealthTips = async (req, res) => {
     });
   }
 };
-// @desc    
-// @route  
-// @access 
+
 const getFriendlyMessage = async (req, res) => {
   try {
     const userLanguage = req.user.language || 'en';
     const userName = req.user.name || 'User';
-    
     const result = await generateFriendlyMessage(userLanguage, userName);
-    
     if (result.success) {
       res.status(200).json({
         success: true,
@@ -62,29 +54,20 @@ const getFriendlyMessage = async (req, res) => {
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
-};
-
-// @desc    
-// @route   
-// @access  
+}; 
 const getAIInsights = async (req, res) => {
   try {
-    const userLanguage = req.user.language || 'en';
-    const userName = req.user.name || 'User';
-    
-    // Generate both health tips and friendly message
+    const userLanguage = req.user?.language || 'en';
+    const userName = req.user?.name || 'User';
     const [tipsResult, messageResult] = await Promise.all([
       generateHealthTips(userLanguage),
       generateFriendlyMessage(userLanguage, userName)
-    ]);
-    
+    ]); 
     const insights = {
       healthTips: tipsResult.success ? tipsResult.tips : [],
       friendlyMessage: messageResult.success ? messageResult.message : '',
       language: userLanguage,
-      generatedAt: new Date().toISOString()
-    };
-    
+      generatedAt: new Date().toISOString()}; 
     res.status(200).json({
       success: true,
       insights
@@ -95,9 +78,5 @@ const getAIInsights = async (req, res) => {
       success: false,
       message: 'Error generating AI insights',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
-  }
-};
-
-module.exports = {getHealthTips, getFriendlyMessage, getAIInsights
-};
+    });}};
+module.exports = {getHealthTips, getFriendlyMessage, getAIInsights};

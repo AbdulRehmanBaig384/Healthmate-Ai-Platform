@@ -1,79 +1,109 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-// initialize for gemini integration
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-// Function to analyze medical report
 const analyzeMedicalReport = async (fileUrl, fileType, reportType) => {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const prompt = `
-    You are a medical AI assistant. Analyze this medical report and provide a comprehensive analysis in both English and Roman Urdu.
+You are a strict medical document validator and analyzer AI.
 
-    Report Type: ${reportType}
-    File Type: ${fileType}
-    File URL: ${fileUrl}
+========================
+STEP 1: VALIDATION
+========================
+First, carefully check whether the uploaded document is a MEDICAL REPORT.
 
-    Please provide the following in your response:
+A medical report includes:
+- Blood test reports
+- Lab test results
+- Radiology (X-ray, MRI, CT)
+- Prescriptions
+- Hospital discharge summaries
+- Medical checkup reports
 
-    1. **Summary** (in both English and Roman Urdu):
-       - Brief overview of the report
-       - Key findings
-       - Overall health status
+NOT medical documents include:
+- Exam result cards
+- Mark sheets
+- Certificates
+- Invoices
+- Any educational or non-health document
 
-    2. **Abnormal Values** (if any):
-       - Parameter name
-       - Current value
-       - Normal range
-       - Severity level (normal/low/high/critical)
+If the document is NOT medical, respond with ONLY this JSON and NOTHING ELSE:
 
-    3. **Doctor Questions** (5-7 questions):
-       - Questions a patient should ask their doctor
-       - Based on the findings
+{
+  "isMedical": false,
+  "reason": "Explain clearly why this document is not a medical report"
+}
 
-    4. **Diet Suggestions** (5-7 suggestions):
-       - Dietary recommendations
-       - Foods to include/avoid
+========================
+STEP 2: ANALYSIS (ONLY IF MEDICAL)
+========================
+If and ONLY IF the document is a medical report, analyze it and respond with ONLY this JSON:
 
-    5. **Home Remedies** (3-5 remedies):
-       - Safe home care tips
-       - Lifestyle modifications
+{
+  "isMedical": true,
+  "analysis": {
+    "summary": {
+      "english": "Simple English summary of the medical report",
+      "urdu": "Roman Urdu summary using English letters"
+    },
+    "abnormalValues": [
+      {
+        "parameter": "Test name",
+        "value": "Observed value",
+        "normalRange": "Normal range",
+        "severity": "normal | low | high | critical"
+      }
+    ],
+    "doctorQuestions": [
+      "Question a patient should ask the doctor"
+    ],
+    "dietSuggestions": [
+      "Safe dietary suggestion (foods to include or avoid)"
+    ],
+    "homeRemedies": [
+      "Safe home care or lifestyle tip"
+    ],
+    "confidence": 0
+  }
+}
 
-    6. **Confidence Score** (0-100):
-       - How confident you are in this analysis
+========================
+IMPORTANT RULES
+========================
+- Output ONLY valid JSON (no markdown, no explanations)
+- Do NOT diagnose diseases
+- Do NOT suggest medicines or dosages
+- Add educational-purpose disclaimer inside summaries
+- Use simple, patient-friendly language
+- Confidence score must be between 0–100
+- If no abnormal values exist, return an empty array
+- Roman Urdu must use English alphabets
 
-    Format your response as JSON with the following structure:
+========================
+DOCUMENT INFO
+========================
+Report Type: ${reportType}
+File Type: ${fileType}
+File URL: ${fileUrl}
+`;
+    const result = await model.generateContent({
+  contents: [
     {
-      "summary": {
-        "english": "English summary here",
-        "urdu": "Roman Urdu summary here"
-      },
-      "abnormalValues": [
+      role: "user",
+      parts: [
+        { text: prompt },
         {
-          "parameter": "Parameter name",
-          "value": "Current value",
-          "normalRange": "Normal range",
-          "severity": "severity_level"
+          fileData: {
+            mimeType: fileType,
+            fileUri: fileUrl
+          }
         }
-      ],
-      "doctorQuestions": ["Question 1", "Question 2", ...],
-      "dietSuggestions": ["Suggestion 1", "Suggestion 2", ...],
-      "homeRemedies": ["Remedy 1", "Remedy 2", ...],
-      "confidence": 85
+      ]
     }
+  ]
+});
 
-    Important Notes:
-    - Always include a disclaimer that this is for educational purposes only
-    - Do not provide specific medical diagnoses
-    - Encourage consulting with healthcare professionals
-    - Use simple, understandable language
-    - For Roman Urdu, use English script with Urdu words
-    `;
-
-    const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-
     try {
       const analysis = JSON.parse(text);
       return {
@@ -81,7 +111,6 @@ const analyzeMedicalReport = async (fileUrl, fileType, reportType) => {
         analysis: analysis
       };
     } catch (parseError) {
-      // If JSON parsing fails, return the raw text
       return {
         success: true,
         analysis: {
@@ -105,25 +134,21 @@ const analyzeMedicalReport = async (fileUrl, fileType, reportType) => {
     };
   }
 };
-
-// Function to generate health tips
 const generateHealthTips = async (userLanguage = 'en') => {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash"  });
     const prompt = `
-    Generate 5 friendly health tips for today. 
+    Generate 5 friendly health tips for today.
     Language: ${userLanguage === 'ur' ? 'Roman Urdu' : 'English'}
-    
+
     Make them:
     - Practical and actionable
     - Encouraging and positive
     - General wellness focused
     - Easy to understand
-    
+
     Format as JSON array: ["tip1", "tip2", "tip3", "tip4", "tip5"]
     `;
-
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -137,7 +162,7 @@ const generateHealthTips = async (userLanguage = 'en') => {
     } catch (parseError) {
       return {
         success: true,
-        tips: userLanguage === 'ur' 
+        tips: userLanguage === 'ur'
           ? [
               "Rozana 8 glass pani piyein",
               "30 minutes walk karein",
@@ -162,25 +187,21 @@ const generateHealthTips = async (userLanguage = 'en') => {
     };
   }
 };
-
-// Function to generate friendly messages
 const generateFriendlyMessage = async (userLanguage = 'en', userName = 'User') => {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash"  });
     const prompt = `
     Generate a friendly, encouraging message for a health app user named ${userName}.
     Language: ${userLanguage === 'ur' ? 'Roman Urdu' : 'English'}
-    
+
     Make it:
     - Warm and personal
     - Health-focused
     - Motivational
     - Short (1-2 sentences)
-    
+
     Just return the message text, no JSON formatting.
     `;
-
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text().trim();
@@ -193,15 +214,40 @@ const generateFriendlyMessage = async (userLanguage = 'en', userName = 'User') =
     console.error('Friendly Message Generation Error:', error);
     return {
       success: true,
-      message: userLanguage === 'ur' 
+      message: userLanguage === 'ur'
         ? `Assalam-o-Alaikum ${userName}! Aaj apna khayal rakhiye aur healthy rahiye! 🌟`
         : `Hello ${userName}! Take care of yourself today and stay healthy! 🌟`
     };
   }
 };
+const aiDoctorChat = async (messages, language = 'en') => {
+  try {
+    const prompt = `
+You are an AI medical assistant (Doctor AI).
 
-module.exports = {
-  analyzeMedicalReport,
-  generateHealthTips,
-  generateFriendlyMessage
+IMPORTANT RULES:
+- Educational purpose only
+- Do NOT diagnose diseases
+- Do NOT prescribe medicines
+- Do NOT panic the user
+- Always suggest consulting a real doctor
+- Be calm, polite, and supportive
+- Language: ${language === 'ur' ? 'Roman Urdu' : 'English'}
+
+Conversation:
+${messages.map(m => `${m.role}: ${m.message}`).join('\n')}
+`;
+    const result = await model.generateContent(prompt);
+    return {
+      success: true,
+      reply: result.response.text()
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+};
+module.exports = {analyzeMedicalReport,generateHealthTips,generateFriendlyMessage,aiDoctorChat,
 };

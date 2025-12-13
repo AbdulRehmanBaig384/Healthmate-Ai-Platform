@@ -6,7 +6,6 @@ const { register, login, getMe, updateProfile,
   logout
 } = require('../controllers/authController');
 
-// Public routes
 router.post('/register', register);
 router.post('/login', login);
 

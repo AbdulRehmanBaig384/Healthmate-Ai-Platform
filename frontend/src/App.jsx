@@ -14,7 +14,7 @@ import Vitals from './pages/Vitals'
 import Profile from './pages/Profile'
 import UploadReport from './pages/UploadReport'
 import ReportDetail from './pages/ReportDetail'
-
+import AIDoctor from './pages/AiDoctor'
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth()
@@ -65,6 +65,15 @@ function App() {
             } />
           
           {/* Protected Routes */}
+          <Route 
+   path="/ai-doctor" 
+  element={
+    <ProtectedRoute>
+      <AIDoctor />
+    </ProtectedRoute>
+  } 
+/>
+
           <Route 
             path="/dashboard" 
             element={

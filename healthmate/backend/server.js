@@ -8,31 +8,25 @@ require('dotenv').config();
 
 const app = express();
 
-// Security middleware
 app.use(helmet());
 app.use(morgan('combined'));
 
-// Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000, 
   max: 100,
   message: 'Too many requests from this IP, please try again later.'
 });
 app.use(limiter);
-
-// CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://healthmate.vercel.app'] 
     : ['http://localhost:3000'],
   credentials: true
 }));
-
-// Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// MongoDB connection
+// mongoDB connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/healthmate', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -40,7 +34,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/healthmat
 .then(() => console.log(' MongoDB connected successfully'))
 .catch(err => console.error(' MongoDB connection error:', err));
 
-// Routes
+// routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/reports', require('./routes/reports'));
 app.use('/api/vitals', require('./routes/vitals'));
@@ -54,8 +48,6 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
-
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack);
   res.status(500).json({
@@ -64,16 +56,13 @@ app.use((err, req, res, next) => {
     error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
   });
 });
-
 app.use('*', (req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found'
   });
 });
-
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log(` HealthMate server running on port ${PORT}`);
   console.log(` Environment: ${process.env.NODE_ENV || 'development'}`);

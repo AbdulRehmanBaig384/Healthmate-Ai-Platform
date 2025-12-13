@@ -69,8 +69,8 @@ const Vitals = () => {
     return <LoadingSpinner text={isUrdu ? 'Vitals load ho rahe hain...' : 'Loading vitals...'} />
   }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ const Vitals = () => {
           className="mb-8" >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl">
                 {isUrdu ? 'Vital Signs' : 'Vital Signs'}
               </h1>
               <p className="text-lg text-gray-600">
@@ -89,7 +89,7 @@ const Vitals = () => {
             </div>
             <button
               onClick={() => setShowAddForm(true)}
-              className="btn-primary mt-4 md:mt-0 flex items-center space-x-2">
+              className="flex items-center mt-4 space-x-2 btn-primary md:mt-0">
               <Plus className="w-5 h-5" />
               <span>{isUrdu ? 'Add Vital' : 'Add Vital'}</span>
             </button>
@@ -100,14 +100,14 @@ const Vitals = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="card p-6 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            className="p-6 mb-8 card">
+            <h2 className="mb-4 text-xl font-semibold text-gray-900">
               {isUrdu ? 'New Vital Reading' : 'Add New Vital Reading'}
             </h2>
             <form onSubmit={handleAddVital} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     {isUrdu ? 'Vital Type' : 'Vital Type'}
                   </label>
                   <select
@@ -122,16 +122,16 @@ const Vitals = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     {isUrdu ? 'Date' : 'Date'}
                   </label>
                   <input type="date" value={newVital.date}
                     onChange={(e) => setNewVital({ ...newVital, date: e.target.value })} className="input-primary"/>
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     {isUrdu ? 'Time' : 'Time'}
                   </label>
                   <select
@@ -145,7 +145,7 @@ const Vitals = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     {isUrdu ? 'Reading' : 'Reading'}
                   </label>
                   {newVital.type === 'blood_pressure' ? (
@@ -156,14 +156,14 @@ const Vitals = () => {
                           ...newVital,
                           value: { ...newVital.value, systolic: e.target.value }
                         })}
-                        className="input-primary flex-1"/>
+                        className="flex-1 input-primary"/>
                       <span className="flex items-center text-gray-500">/</span>
                       <input type="number" placeholder="80" value={newVital.value.diastolic}
                         onChange={(e) => setNewVital({
                           ...newVital,
                           value: { ...newVital.value, diastolic: e.target.value }
                         })}
-                        className="input-primary flex-1"/>
+                        className="flex-1 input-primary"/>
                     </div>
                   ) : (
                     <input type="number" step="0.1"  value={newVital.value.reading}
@@ -176,7 +176,7 @@ const Vitals = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block mb-2 text-sm font-medium text-gray-700">
                   {isUrdu ? 'Notes' : 'Notes'}
                 </label>
                 <textarea value={newVital.notes} 
@@ -185,14 +185,14 @@ const Vitals = () => {
               </div>
 
               <div className="flex space-x-4">
-                <button1 type="button"
+                <button type="button"
                   onClick={() => setShowAddForm(false)}
-                  className="btn-ghost flex-1">
+                  className="flex-1 btn-ghost">
                   {isUrdu ? 'Cancel' : 'Cancel'}
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary flex-1">
+                  className="flex-1 btn-primary">
                   {isUrdu ? 'Add Vital' : 'Add Vital'}
                 </button>
               </div>
@@ -206,7 +206,7 @@ const Vitals = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {vitals.map((vital, index) => {
               const Icon = getVitalIcon(vital.type)
               return (
@@ -215,7 +215,7 @@ const Vitals = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="card card-hover p-6">
+                  className="p-6 card card-hover">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
@@ -265,21 +265,21 @@ const Vitals = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16">
-            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            className="py-16 text-center">
+            <div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full">
               <Activity className="w-12 h-12 text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="mb-2 text-xl font-semibold text-gray-900">
               {isUrdu ? 'Koi vitals nahi hain' : 'No vitals recorded'}
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="mb-6 text-gray-600">
               {isUrdu 
                 ? 'Apna pehla vital reading add karein'
                 : 'Add your first vital reading'
               }
             </p>
             <button  onClick={() => setShowAddForm(true)}
-              className="btn-primary inline-flex items-center space-x-2">
+              className="inline-flex items-center space-x-2 btn-primary">
               <Plus className="w-5 h-5" />
               <span>{isUrdu ? 'Add Vital' : 'Add Vital'}</span>
             </button>
