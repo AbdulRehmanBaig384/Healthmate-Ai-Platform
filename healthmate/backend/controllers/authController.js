@@ -39,9 +39,13 @@ const login = async (req, res) => {
       return res.status(401).json({
         success: false,
         message: 'Invalid credentials'
+<<<<<<< Updated upstream
       });
     }
     // Check if password matche
+=======
+      });}
+>>>>>>> Stashed changes
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({

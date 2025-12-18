@@ -1,6 +1,8 @@
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const path = require('path');
+const fs = require('fs');
 
 // Configure Cloudinary
 cloudinary.config({
@@ -10,18 +12,31 @@ cloudinary.config({
 });
 
 // Configure storage
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'healthmate/reports',
-    resource_type: 'auto',
-    allowed_formats: ['jpg', 'jpeg', 'png', 'pdf'],
-    transformation: [
-      { quality: 'auto' },
-      { fetch_format: 'auto' }
-    ]
-  }
-});
+const storage = process.env.NODE_ENV === 'production'
+  ? new CloudinaryStorage({
+      cloudinary: cloudinary,
+      params: {
+        folder: 'healthmate/reports',
+        resource_type: 'auto',
+        allowed_formats: ['jpg', 'jpeg', 'png', 'pdf'],
+        transformation: [
+          { quality: 'auto' },
+          { fetch_format: 'auto' }
+        ]
+      }
+    })
+  : multer.diskStorage({
+      destination: (req, file, cb) => {
+        const uploadDir = path.join(__dirname, '../uploads');
+        if (!fs.existsSync(uploadDir)) {
+          fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
+      },
+      filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);
+      }
+    });
 
 // File filter
 const fileFilter = (req, file, cb) => {

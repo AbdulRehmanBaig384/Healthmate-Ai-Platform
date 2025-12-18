@@ -17,10 +17,10 @@ const chatWithDoctor = async (req, res) => {
     });
     const history = await AIChat.find({ user: userId })
       .sort({ createdAt: -1 })
-      .limit(8)
+      .limit(4)
       .lean();
     const formatted = history.reverse();
-    const aiResult = await aiDoctorChat(formatted, language);
+    const aiResult = await aiDoctorChat(formatted, language, userId);
     if (!aiResult.success) {
       return res.status(500).json({ success: false, message: "AI failed" });
     }
@@ -35,6 +35,15 @@ const chatWithDoctor = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Chat error" });
-  }};
+    let errorMessage = "Chat error";
+    let statusCode = 500;
+
+    if (error.message.includes("quota exceeded")) {
+      errorMessage = "Daily AI usage limit reached. Please try again tomorrow.";
+      statusCode = 429;
+    }
+
+    res.status(statusCode).json({ success: false, message: errorMessage });
+  }
+};
 module.exports = { chatWithDoctor };
