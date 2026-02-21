@@ -1,17 +1,12 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-
-// Protect routes - verify JWT token
 const protect = async (req, res, next) => {
   try {
     let token;
-
-    // Check for token in headers
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
       token = req.headers.authorization.split(' ')[1];
     }
-
-    // Check for token in cookies
+    
     if (!token && req.cookies.token) {
       token = req.cookies.token;
     }
@@ -66,7 +61,7 @@ const sendTokenResponse = (user, statusCode, res) => {
   const token = generateToken(user._id);
 
   const options = {
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict'
@@ -88,8 +83,4 @@ const sendTokenResponse = (user, statusCode, res) => {
     });
 };
 
-module.exports = {
-  protect,
-  generateToken,
-  sendTokenResponse
-};
+module.exports = {protect,generateToken,sendTokenResponse};
