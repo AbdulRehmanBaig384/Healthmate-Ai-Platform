@@ -48,7 +48,6 @@ const protect = async (req, res, next) => {
     });
   }
 };
-
 // Generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -67,20 +66,10 @@ const sendTokenResponse = (user, statusCode, res) => {
     sameSite: 'strict'
   };
 
-  res.status(statusCode)
-    .cookie('token', token, options)
-    .json({
-      success: true,
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-        language: user.language,
-        isVerified: user.isVerified
+  res.status(statusCode).cookie('token', token, options).json({
+      success: true,token,
+      user: {id: user._id, name: user.name, email: user.email, avatar: user.avatar, language: user.language,isVerified: user.isVerified
       }
     });
 };
-
 module.exports = {protect,generateToken,sendTokenResponse};
