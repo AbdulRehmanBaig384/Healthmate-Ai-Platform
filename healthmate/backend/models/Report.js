@@ -66,15 +66,6 @@
 //   tags: [String],
 //   notes: String
 // }, {
-//   timestamps: true
-// });
-
-// // Index for better query performance
-// reportSchema.index({ user: 1, reportDate: -1 });
-// reportSchema.index({ user: 1, type: 1 });
-
-// module.exports = mongoose.model('Report', reportSchema);
-
 
 
 
