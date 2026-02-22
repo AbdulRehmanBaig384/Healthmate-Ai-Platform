@@ -52,12 +52,6 @@
 //     confidence: {
 //       type: Number,
 //       min: 0,
-//       max: 100
-//     },
-//     analyzedAt: {
-//       type: Date,
-//       default: Date.now
-//     }
 
 const mongoose = require('mongoose');
 
