@@ -38,20 +38,17 @@ const reportSchema = new mongoose.Schema({
     required: true
   },
 
-  // 🟢 NEW: OCR extracted text
   ocrText: {
     type: String,
     default: ""
   },
 
-  // 🟢 NEW: Analysis status for frontend spinner
   analysisStatus: {
     type: String,
     enum: ['pending', 'processing', 'completed', 'failed'],
     default: 'pending'
   },
 
-  // 🟢 AI result
   aiAnalysis: {
     summary: {
       english: String,
@@ -75,11 +72,7 @@ const reportSchema = new mongoose.Schema({
       max: 100
     }
   },
-
-  // 🟢 Analysis time
   analyzedAt: Date,
-
-  // 🟢 Error if AI fails
   analysisError: String,
 
   tags: [String],
@@ -87,8 +80,6 @@ const reportSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-// Indexes
 reportSchema.index({ user: 1, reportDate: -1 });
 reportSchema.index({ user: 1, type: 1 });
-
 module.exports = mongoose.model('Report', reportSchema);
