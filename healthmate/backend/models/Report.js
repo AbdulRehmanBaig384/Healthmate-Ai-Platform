@@ -44,14 +44,6 @@
 //       severity: {
 //         type: String,
 //         enum: ['low', 'normal', 'high', 'critical']
-//       }
-//     }],
-//     doctorQuestions: [String],
-//     dietSuggestions: [String],
-//     homeRemedies: [String],
-//     confidence: {
-//       type: Number,
-//       min: 0,
 
 const mongoose = require('mongoose');
 
