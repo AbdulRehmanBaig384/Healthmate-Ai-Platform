@@ -58,18 +58,6 @@
 //       type: Date,
 //       default: Date.now
 //     }
-//   },
-//   isAnalyzed: {
-//     type: Boolean,
-//     default: false
-//   },
-//   tags: [String],
-//   notes: String
-// }, {
-
-
-
-
 
 const mongoose = require('mongoose');
 
