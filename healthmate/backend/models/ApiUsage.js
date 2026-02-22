@@ -9,15 +9,12 @@ const apiUsageSchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
-    default: () => new Date().toISOString().split('T')[0] // YYYY-MM-DD
+    default: () => new Date().toISOString().split('T')[0]
   },
   count: {
     type: Number,
     default: 0
   }
 }, { timestamps: true });
-
-// Compound index for user and date
 apiUsageSchema.index({ user: 1, date: 1 }, { unique: true });
-
 module.exports = mongoose.model('ApiUsage', apiUsageSchema);
