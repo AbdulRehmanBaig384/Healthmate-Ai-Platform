@@ -158,13 +158,7 @@
 //     success: true,
 //     insights: {
 //       healthTips: tips?.tips || [],
-//       friendlyMessage: "", // generated only on button click
-//       language: userLanguage
-//     }
-//   });
-// };
 
-// module.exports = {getHealthTips, getFriendlyMessage, getAIInsights};
 
 
 
