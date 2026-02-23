@@ -136,15 +136,7 @@
 // //       generatedAt: new Date().toISOString()}; 
 // //     res.status(200).json({
 // //       success: true,
-// //       insights
-// //     });
-// //   } catch (error) {
-// //     console.error('Get AI insights error:', error);
-// //     res.status(500).json({
-// //       success: false,
-// //       message: 'Error generating AI insights',
-// //       error: process.env.NODE_ENV === 'development' ? error.message : undefined
-// //     });}};
+// //       insight
 const { generateHealthTips, generateFriendlyMessage } = require('../utils/gemini');
 const Tips = require('../models/Tips');
 
