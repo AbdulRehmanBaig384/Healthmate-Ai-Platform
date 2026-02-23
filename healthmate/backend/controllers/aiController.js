@@ -123,20 +123,6 @@
 // //     //   generateFriendlyMessage(userLanguage, userName)
 // //     // ]); 
 
-// //     const tipsResult = await generateHealthTips(userLanguage);
-// // // wait 5 seconds
-// // await new Promise(res => setTimeout(res, 5000));
-
-// // const messageResult = await generateFriendlyMessage(userLanguage, userName);
-
-// //     const insights = {
-// //       healthTips: tipsResult.success ? tipsResult.tips : [],
-// //       friendlyMessage: messageResult.success ? messageResult.message : '',
-// //       language: userLanguage,
-// //       generatedAt: new Date().toISOString()}; 
-// //     res.status(200).json({
-// //       success: true,
-// //       insight
 const { generateHealthTips, generateFriendlyMessage } = require('../utils/gemini');
 const Tips = require('../models/Tips');
 
