@@ -145,16 +145,6 @@
 // //       message: 'Error generating AI insights',
 // //       error: process.env.NODE_ENV === 'development' ? error.message : undefined
 // //     });}};
-
-
-
-// const getAIInsights = async (req, res) => {
-//   const userLanguage = req.user.language || "en";
-//   const today = new Date().toISOString().slice(0, 10);
-
-//   const tips = await Tips.findOne({ date: today, language: userLanguage });
-
-
 const { generateHealthTips, generateFriendlyMessage } = require('../utils/gemini');
 const Tips = require('../models/Tips');
 
