@@ -154,16 +154,6 @@
 
 //   const tips = await Tips.findOne({ date: today, language: userLanguage });
 
-//   res.json({
-//     success: true,
-//     insights: {
-//       healthTips: tips?.tips || [],
-
-
-
-
-
-
 
 const { generateHealthTips, generateFriendlyMessage } = require('../utils/gemini');
 const Tips = require('../models/Tips');
