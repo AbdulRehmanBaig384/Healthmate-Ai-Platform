@@ -12,8 +12,6 @@ const uploadReport = async (req, res) => {
         message: "No file uploaded",
       });
     }
-
-
     const report = await Report.create({
    user: userId,
    title,
@@ -224,8 +222,6 @@ const reanalyzeReport = async (req, res) => {
         message: "Not a medical report",
       });
     }
-
-    // 🟢 Step 4: Save AI result
     report.aiAnalysis = result.analysis.analysis;
     report.isAnalyzed = true;
     report.analysisStatus = "completed";
@@ -247,10 +243,8 @@ const reanalyzeReport = async (req, res) => {
 
     if (error.message.includes("quota exceeded")) {
       errorMessage = "Daily AI usage limit reached. Please try again tomorrow.";
-      statusCode = 429; // Too Many Requests
+      statusCode = 429; 
     }
-
-    // 🟢 Save failure status
     await Report.findByIdAndUpdate(req.params.id, {
       analysisStatus: "failed",
       analysisError: errorMessage,
@@ -262,6 +256,4 @@ const reanalyzeReport = async (req, res) => {
     });
   }
 };
-
-
 module.exports = {uploadReport,getReports,getReport,updateReport,deleteReport,reanalyzeReport,};
