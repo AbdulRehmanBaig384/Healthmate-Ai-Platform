@@ -3,14 +3,7 @@ const { waitForQuota, checkAndIncrementQuota } = require("./rateLimiter");
 
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-/**
- * 🔒 SINGLE SOURCE OF TRUTH FOR MODEL
- * Never use "-latest" or "2.0" with this SDK
- */
 const BASE_MODEL = "gemini-pro";
-
-
 const modelConfig = {
   model: BASE_MODEL,
   generationConfig: {
@@ -24,10 +17,7 @@ const modelConfig = {
     { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH },
   ],
 };
-
-/* ======================================================
-   MEDICAL REPORT ANALYSIS
-====================================================== */
+// analysis reports
 const analyzeMedicalReport = async (extractTextFromImage, fileType, reportType, userId) => {
   try {
     if (!extractTextFromImage || extractTextFromImage.length < 10) {
@@ -135,9 +125,6 @@ Return ONLY JSON array.
   }
 };
 
-/* ======================================================
-   FRIENDLY MESSAGE
-====================================================== */
 const generateFriendlyMessage = async (userLanguage = "en", userName = "User") => {
   try {
     await waitForQuota();
@@ -157,10 +144,6 @@ Language: ${userLanguage === "ur" ? "Roman Urdu" : "English"}
     return { success: true, message: `Welcome back, ${userName}! Stay healthy.` };
   }
 };
-
-/* ======================================================
-   AI DOCTOR CHAT
-====================================================== */
 const aiDoctorChat = async (messages, language = "en", userId) => {
   try {
     await checkAndIncrementQuota(userId);
@@ -195,9 +178,4 @@ const aiDoctorChat = async (messages, language = "en", userId) => {
   }
 };
 
-module.exports = {
-  analyzeMedicalReport,
-  generateHealthTips,
-  generateFriendlyMessage,
-  aiDoctorChat
-};
+module.exports = {analyzeMedicalReport,generateHealthTips, generateFriendlyMessage,aiDoctorChat};
