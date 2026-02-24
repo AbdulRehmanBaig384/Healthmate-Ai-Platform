@@ -13,17 +13,6 @@ const uploadReport = async (req, res) => {
       });
     }
 
-    // const report = await Report.create({
-    //   user: userId,
-    //   title,
-    //   type,
-    //   fileUrl: req.file.path,
-    //   fileType: req.file.mimetype,
-    //   fileSize: req.file.size,
-    //   reportDate: new Date(reportDate),
-    //   isAnalyzed: false,
-    //   aiAnalysis: null,
-    // });
 
     const report = await Report.create({
    user: userId,
