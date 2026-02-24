@@ -1,22 +1,14 @@
 const Vital = require('../models/Vital');
-
-// @desc    Add vital reading
-// @route   POST /api/vitals
-// @access  Private
 const addVital = async (req, res) => {
   try {
     const { type, value, date, time, notes } = req.body;
     const userId = req.user.id;
-
-    // Validate vital type and value
     if (!type || !value) {
       return res.status(400).json({
         success: false,
         message: 'Vital type and value are required'
       });
     }
-
-    // Determine if value is normal and severity
     const { isNormal, severity } = determineVitalStatus(type, value);
 
     const vital = await Vital.create({
@@ -44,16 +36,11 @@ const addVital = async (req, res) => {
     });
   }
 };
-
-// @desc    Get all vitals for user
-// @route   GET /api/vitals
-// @access  Private
 const getVitals = async (req, res) => {
   try {
     const userId = req.user.id;
     const { type, page = 1, limit = 20, startDate, endDate } = req.query;
 
-    // Build query
     const query = { user: userId };
     if (type) {
       query.type = type;
@@ -63,8 +50,6 @@ const getVitals = async (req, res) => {
       if (startDate) query.date.$gte = new Date(startDate);
       if (endDate) query.date.$lte = new Date(endDate);
     }
-
-    // Calculate pagination
     const skip = (page - 1) * limit;
 
     // Get vitals with pagination
@@ -96,9 +81,6 @@ const getVitals = async (req, res) => {
   }
 };
 
-// @desc    Get single vital
-// @route   GET /api/vitals/:id
-// @access  Private
 const getVital = async (req, res) => {
   try {
     const vitalId = req.params.id;
@@ -130,9 +112,6 @@ const getVital = async (req, res) => {
   }
 };
 
-// @desc    Update vital
-// @route   PUT /api/vitals/:id
-// @access  Private
 const updateVital = async (req, res) => {
   try {
     const vitalId = req.params.id;
@@ -182,9 +161,6 @@ const updateVital = async (req, res) => {
   }
 };
 
-// @desc    Delete vital
-// @route   DELETE /api/vitals/:id
-// @access  Private
 const deleteVital = async (req, res) => {
   try {
     const vitalId = req.params.id;
@@ -215,10 +191,6 @@ const deleteVital = async (req, res) => {
     });
   }
 };
-
-// @desc    Get vitals summary/statistics
-// @route   GET /api/vitals/summary
-// @access  Private
 const getVitalsSummary = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -352,11 +324,4 @@ const calculateTrend = (vitals, type) => {
   return 'stable';
 };
 
-module.exports = {
-  addVital,
-  getVitals,
-  getVital,
-  updateVital,
-  deleteVital,
-  getVitalsSummary
-};
+module.exports = { addVital, getVitals, getVital, updateVital, deleteVital, getVitalsSummary};
