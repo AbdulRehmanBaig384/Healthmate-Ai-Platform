@@ -64,8 +64,8 @@ const Dashboard = () => {
             : "Eat fresh fruits and vegetables",
         ],
         friendlyMessage: isUrdu
-          ? `Assalam-o-Alaikum ${user?.name}! Aaj apna khayal rakhiye aur healthy rahiye! 🌟`
-          : `Hello ${user?.name}! Take care of yourself today and stay healthy! 🌟`,
+          ? `Assalam-o-Alaikum ${user?.name}! Aaj apna khayal rakhiye aur healthy rahiye! `
+          : `Hello ${user?.name}! Take care of yourself today and stay healthy!`,
         stats: {
           totalReports: 0,
           totalVitals: 0,
@@ -187,16 +187,14 @@ const Dashboard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4"
-        >
+          className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className="p-6 card"
-              >
+                className="p-6 card">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="mb-1 text-sm font-medium text-gray-600">
@@ -207,8 +205,7 @@ const Dashboard = () => {
                     </p>
                   </div>
                   <div
-                    className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}
-                  >
+                    className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`} >
                     <Icon className={`w-6 h-6 ${stat.color}`} />
                   </div>
                 </div>
