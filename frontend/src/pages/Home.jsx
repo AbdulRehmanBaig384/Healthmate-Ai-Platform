@@ -119,12 +119,9 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
-            <Link
-              to="/register"
-              className="flex items-center px-8 py-4 space-x-2 text-lg btn-primary group"
-            >
+            className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link to="/register"
+              className="flex items-center px-8 py-4 space-x-2 text-lg btn-primary group">
               <span>{isUrdu ? "Start Free" : "Start Free"}</span>
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -142,8 +139,7 @@ const Home = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="mb-16 text-center"
-          >
+            className="mb-16 text-center">
             <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
               {isUrdu ? "Powerful Features" : "Powerful Features"}
             </h2>
