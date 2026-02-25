@@ -29,8 +29,7 @@ const LanguageToggle = () => {
       <button
         onClick={() => setOpen(!open)}
         className="p-2 transition rounded-lg hover:bg-gray-100"
-        title="Change language"
-      >
+        title="Change language">
         <Globe className="w-5 h-5" />
       </button>
 
@@ -40,14 +39,12 @@ const LanguageToggle = () => {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="absolute right-0 z-50 mt-2 bg-white border shadow-lg w-36 rounded-xl"
-          >
+            className="absolute right-0 z-50 mt-2 bg-white border shadow-lg w-36 rounded-xl">
             <button
               onClick={() => changeLanguage('en')}
               className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${
                 language === 'en' && 'font-semibold'
-              }`}
-            >
+              }`}>
               🇬🇧 English
             </button>
 
@@ -55,8 +52,7 @@ const LanguageToggle = () => {
               onClick={() => changeLanguage('ur')}
               className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${
                 language === 'ur' && 'font-semibold'
-              }`}
-            >
+              }`}>
               🇵🇰 اردو
             </button>
           </motion.div>
@@ -65,5 +61,4 @@ const LanguageToggle = () => {
     </div>
   )
 }
-
 export default LanguageToggle
