@@ -159,8 +159,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 text-center card card-hover"
-                >
+                  className="p-6 text-center card card-hover" >
                   <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 gradient-primary rounded-2xl">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
@@ -181,8 +180,7 @@ const Home = () => {
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-            >
+              whileInView={{ opacity: 1, x: 0 }}>
               <h2 className="mb-6 text-4xl font-bold md:text-5xl">
                 {isUrdu
                   ? "Kyun choose karein HealthMate?"
@@ -201,8 +199,7 @@ const Home = () => {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-center space-x-3"
-                  >
+                    className="flex items-center space-x-3">
                     <CheckCircle className="flex-shrink-0 w-6 h-6 text-green-300" />
                     <span className="text-lg">{benefit}</span>
                   </motion.div>
@@ -213,8 +210,7 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="relative"
-            >
+              className="relative">
               <div className="p-8 border card bg-white/10 backdrop-blur-sm border-white/20">
                 <div className="text-center">
                   <div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-white/20">
@@ -258,8 +254,7 @@ const Home = () => {
         <div className="max-w-4xl px-4 mx-auto text-center sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-          >
+            whileInView={{ opacity: 1, y: 0 }}>
             <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
               {isUrdu ? "Ready to start?" : "Ready to get started?"}
             </h2>
@@ -270,16 +265,13 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                to="/register"
-                className="flex items-center justify-center px-8 py-4 space-x-2 text-lg btn-primary group"
-              >
+              <Link to="/register"
+                className="flex items-center justify-center px-8 py-4 space-x-2 text-lg btn-primary group" >
                 <span>
                   {isUrdu ? "Free Account Banayein" : "Create Free Account"}
                 </span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
-
               <Link to="/login" className="px-8 py-4 text-lg btn-ghost">
                 {isUrdu ? "Login Karein" : "Login Now"}
               </Link>
