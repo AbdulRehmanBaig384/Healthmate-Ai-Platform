@@ -25,8 +25,6 @@ const ProtectedRoute = ({ children }) => {
   
   return user ? children : <Navigate to="/login" replace />
 }
-
-// Public Route Component (redirect to dashboard if logged in)
 const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth()
   
