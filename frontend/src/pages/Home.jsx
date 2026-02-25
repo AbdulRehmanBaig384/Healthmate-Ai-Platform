@@ -55,12 +55,12 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* hero section */}
       <section className="relative flex items-center justify-center min-h-screen overflow-hidden">
-        {/* Background Gradient */}
+        {/* background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-secondary-50" />
 
-        {/* Floating Elements */}
+        {/* floating elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             animate={{
@@ -72,8 +72,7 @@ const Home = () => {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute w-20 h-20 rounded-full top-20 left-10 bg-primary-200/30 blur-xl"
-          />
+            className="absolute w-20 h-20 rounded-full top-20 left-10 bg-primary-200/30 blur-xl"/>
           <motion.div
             animate={{
               y: [0, 20, 0],
@@ -84,17 +83,14 @@ const Home = () => {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute w-32 h-32 rounded-full bottom-20 right-10 bg-secondary-200/30 blur-xl"
-          />
+            className="absolute w-32 h-32 rounded-full bottom-20 right-10 bg-secondary-200/30 blur-xl"/>
         </div>
-
         <div className="relative z-10 px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
-          >
+            className="mb-8">
             <div className="inline-flex items-center px-4 py-2 mb-6 space-x-2 border rounded-full bg-white/80 backdrop-blur-sm border-white/20">
               <Heart className="w-5 h-5 text-primary-500" />
               <span className="text-sm font-medium text-gray-700">
