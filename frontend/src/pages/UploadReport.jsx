@@ -39,42 +39,8 @@ const UploadReport = () => {
       'image/*': ['.png', '.jpg', '.jpeg']
     },
     maxFiles: 1,
-    maxSize: 10 * 1024 * 1024 // 10MB
+    maxSize: 10 * 1024 * 1024 
   })
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-    
-  //   if (!file) {
-  //     toast.error(isUrdu ? 'Please file select karein' : 'Please select a file')
-  //     return
-  //   }
-
-  //   setUploading(true)
-
-  //   try {
-  //     const uploadData = new FormData()
-  //     uploadData.append('file', file)
-  //     uploadData.append('title', formData.title)
-  //     uploadData.append('type', formData.type)
-  //     uploadData.append('reportDate', formData.reportDate)
-
-  //     const response = await axios.post('/api/reports/upload', uploadData, {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data'
-  //       }
-  //     })
-
-  //     toast.success(isUrdu ? 'Report successfully upload ho gaya!' : 'Report uploaded successfully!')
-  //     navigate('/reports')
-  //   } catch (error) {
-  //     console.error('Upload error:', error)
-  //     toast.error(error.response?.data?.message || (isUrdu ? 'Upload failed' : 'Upload failed'))
-  //   } finally {
-  //     setUploading(false)
-  //   } }
-
-
   const handleSubmit = async (e) => {
   e.preventDefault()
 
@@ -87,12 +53,12 @@ const UploadReport = () => {
 
   try {
     const uploadData = new FormData()
-    uploadData.append('file', file) // ✅ correct
+    uploadData.append('file', file) 
     uploadData.append('title', formData.title)
     uploadData.append('type', formData.type)
     uploadData.append('reportDate', formData.reportDate)
 
-    const token = localStorage.getItem('token') // 🔥 IMPORTANT
+    const token = localStorage.getItem('token')
 
     const response = await axios.post(
       '/api/reports/upload',
@@ -100,7 +66,7 @@ const UploadReport = () => {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}` // 🔥 THIS WAS MISSING
+          Authorization: `Bearer ${token}` 
         }
       }
     )
