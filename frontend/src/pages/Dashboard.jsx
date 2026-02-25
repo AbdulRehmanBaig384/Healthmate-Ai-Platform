@@ -84,7 +84,6 @@ const Dashboard = () => {
       />
     );
   }
-
   const quickActions = [
     {
       title: isUrdu ? "Report Upload Karein" : "Upload Report",
@@ -150,8 +149,7 @@ const Dashboard = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
+          className="mb-8">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl">
@@ -176,8 +174,7 @@ const Dashboard = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="flex items-center justify-center w-16 h-16 gradient-primary rounded-2xl"
-              >
+                className="flex items-center justify-center w-16 h-16 gradient-primary rounded-2xl">
                 <Heart className="w-8 h-8 text-white" />
               </motion.div>
             </div>
@@ -216,9 +213,7 @@ const Dashboard = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-8"
-        >
+          transition={{ delay: 0.2 }}>
           <h2 className="mb-6 text-2xl font-bold text-gray-900">
             {isUrdu ? "Quick Actions" : "Quick Actions"}
           </h2>
@@ -229,11 +224,9 @@ const Dashboard = () => {
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.02 }}
-                  className="p-6 card card-hover"
-                >
+                  className="p-6 card card-hover">
                   <div
-                    className={`w-12 h-12 bg-gradient-to-r ${action.color} rounded-lg flex items-center justify-center mb-4`}
-                  >
+                    className={`w-12 h-12 bg-gradient-to-r ${action.color} rounded-lg flex items-center justify-center mb-4`}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="mb-2 text-lg font-semibold text-gray-900">
@@ -242,8 +235,7 @@ const Dashboard = () => {
                   <p className="mb-4 text-gray-600">{action.description}</p>
                   <Link
                     to={action.link}
-                    className="inline-flex items-center font-medium text-primary-600 hover:text-primary-700 group"
-                  >
+                    className="inline-flex items-center font-medium text-primary-600 hover:text-primary-700 group">
                     {isUrdu ? "Start Karein" : "Get Started"}
                     <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -258,8 +250,7 @@ const Dashboard = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="lg:col-span-2"
-          >
+            className="lg:col-span-2" >
             <div className="p-6 card">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-gray-900">
@@ -267,8 +258,7 @@ const Dashboard = () => {
                 </h2>
                 <Link
                   to="/reports"
-                  className="flex items-center font-medium text-primary-600 hover:text-primary-700"
-                >
+                  className="flex items-center font-medium text-primary-600 hover:text-primary-700" >
                   {isUrdu ? "Sab Dekhein" : "View All"}
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
@@ -281,8 +271,7 @@ const Dashboard = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="flex items-center justify-between p-4 rounded-lg bg-gray-50"
-                    >
+                      className="flex items-center justify-between p-4 rounded-lg bg-gray-50" >
                       <div className="flex items-center space-x-3">
                         <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-lg">
                           <FileText className="w-5 h-5 text-blue-600" />
@@ -336,8 +325,7 @@ const Dashboard = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="space-y-6"
-          >
+            className="space-y-6">
             <div className="p-6 card">
               <div className="flex items-center mb-4 space-x-3">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500">
@@ -375,8 +363,7 @@ const Dashboard = () => {
 
               <Link
                 to="/ai-doctor"
-                className="inline-flex items-center justify-center w-full gap-2 btn-primary"
-              >
+                className="inline-flex items-center justify-center w-full gap-2 btn-primary">
                 <Brain className="w-4 h-4" />
                 {isUrdu ? "AI Doctor se Baat Karein" : "Chat with AI Doctor"}
               </Link>
@@ -399,8 +386,7 @@ const Dashboard = () => {
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-start space-x-3"
-                  >
+                    className="flex items-start space-x-3">
                     <div className="flex-shrink-0 w-2 h-2 mt-2 bg-green-500 rounded-full" />
                     <p className="text-sm text-gray-700">{tip}</p>
                   </motion.div>
@@ -421,19 +407,16 @@ const Dashboard = () => {
                 </div>
                 <Link
                   to="/vitals"
-                  className="text-primary-600 hover:text-primary-700"
-                >
+                  className="text-primary-600 hover:text-primary-700">
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-
               {dashboardData.vitals.length > 0 ? (
                 <div className="space-y-3">
                   {dashboardData.vitals.slice(0, 3).map((vital, index) => (
                     <div
                       key={vital._id}
-                      className="flex items-center justify-between"
-                    >
+                      className="flex items-center justify-between">
                       <div>
                         <p className="font-medium text-gray-900 capitalize">
                           {vital.type.replace("_", " ")}
@@ -447,8 +430,7 @@ const Dashboard = () => {
                           vital.isNormal
                             ? "bg-green-100 text-green-800"
                             : "bg-orange-100 text-orange-800"
-                        }`}
-                      >
+                        }`}>
                         {vital.isNormal
                           ? isUrdu
                             ? "Normal"
@@ -475,5 +457,4 @@ const Dashboard = () => {
     </div>
   );
 };
-
 export default Dashboard;
