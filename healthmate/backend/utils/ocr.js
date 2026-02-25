@@ -24,9 +24,7 @@ const extractTextFromImage = async (fileUrl, fileType) => {
           logger: m => {
             if (m.status === "recognizing text") {
               console.log(`OCR progress: ${Math.round(m.progress * 100)}%`);
-            }
-          }
-        }
+            }}}
       );
       text = result?.data?.text || "";
     }
@@ -40,12 +38,10 @@ const extractTextFromImage = async (fileUrl, fileType) => {
     return text;
   } catch (error) {
     console.error("text extraction Error:", error.message);
-
     // Never crash backend
     return "Text extraction failed. The document text could not be extracted clearly.";
   }
 };
-
 const downloadFile = (url) => {
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
