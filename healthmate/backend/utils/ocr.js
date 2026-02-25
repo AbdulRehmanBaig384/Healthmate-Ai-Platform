@@ -5,12 +5,9 @@ const pdfParse = require('pdf-parse');
 
 const extractTextFromImage = async (fileUrl, fileType) => {
   try {
-    console.log("🔍 Text extraction started for:", fileUrl, "Type:", fileType);
-
+    console.log("text extraction started for:", fileUrl, "Type:", fileType);
     let text = "";
-
     if (fileType === 'application/pdf') {
-      // For PDFs, read file
       let pdfBuffer;
       if (fileUrl.startsWith('http')) {
         pdfBuffer = await downloadFile(fileUrl);
@@ -20,7 +17,6 @@ const extractTextFromImage = async (fileUrl, fileType) => {
       const data = await pdfParse(pdfBuffer);
       text = data.text;
     } else {
-      // For images, use OCR
       const result = await Tesseract.recognize(
         fileUrl,
         "eng",
@@ -34,20 +30,16 @@ const extractTextFromImage = async (fileUrl, fileType) => {
       );
       text = result?.data?.text || "";
     }
-
-    // Clean output
     text = text.replace(/\s+/g, " ").trim();
-
     if (!text || text.length < 10) {
       console.warn("⚠ Text extraction returned very little text");
       return "Unable to clearly read the document. The text is unclear or file quality is low.";
     }
 
-    console.log("✅ Text extraction completed successfully");
+    console.log(" text extraction completed successfully");
     return text;
-
   } catch (error) {
-    console.error("❌ Text extraction Error:", error.message);
+    console.error("text extraction Error:", error.message);
 
     // Never crash backend
     return "Text extraction failed. The document text could not be extracted clearly.";
