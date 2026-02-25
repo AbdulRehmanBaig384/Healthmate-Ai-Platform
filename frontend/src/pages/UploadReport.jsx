@@ -68,9 +68,7 @@ const UploadReport = () => {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}` 
         }
-      }
-    )
-
+      })
     toast.success(
       isUrdu ? 'Report successfully upload ho gaya!' : 'Report uploaded successfully!'
     )
@@ -83,10 +81,7 @@ const UploadReport = () => {
     )
   } finally {
     setUploading(false)
-  }
-}
-
-
+  }}
   const reportTypes = [
     { value: 'blood_test', label: isUrdu ? 'Blood Test' : 'Blood Test' },
     { value: 'urine_test', label: isUrdu ? 'Urine Test' : 'Urine Test' },
@@ -96,11 +91,9 @@ const UploadReport = () => {
     { value: 'ecg', label: 'ECG' },
     { value: 'other', label: isUrdu ? 'Other' : 'Other' }
   ]
-
   if (uploading) {
     return <LoadingSpinner text={isUrdu ? 'Report upload ho raha hai...' : 'Uploading report...'} />
   }
-
   return (
     <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="max-w-4xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
@@ -264,5 +257,4 @@ const UploadReport = () => {
     </div>
   )
 }
-
 export default UploadReport
