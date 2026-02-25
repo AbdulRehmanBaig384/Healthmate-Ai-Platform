@@ -96,10 +96,6 @@ If medical:
     return { success: false, error: error.message };
   }
 };
-
-/* ======================================================
-   DAILY HEALTH TIPS
-====================================================== */
 const generateHealthTips = async (userLanguage = "en") => {
   try {
     await waitForQuota();
