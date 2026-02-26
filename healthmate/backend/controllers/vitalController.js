@@ -10,7 +10,6 @@ const addVital = async (req, res) => {
       });
     }
     const { isNormal, severity } = determineVitalStatus(type, value);
-
     const vital = await Vital.create({
       user: userId,
       type,
@@ -21,7 +20,6 @@ const addVital = async (req, res) => {
       isNormal,
       severity
     });
-
     res.status(201).json({
       success: true,
       message: 'Vital reading added successfully',
@@ -57,9 +55,7 @@ const getVitals = async (req, res) => {
       .sort({ date: -1, createdAt: -1 })
       .skip(skip)
       .limit(parseInt(limit));
-
     const total = await Vital.countDocuments(query);
-
     res.status(200).json({
       success: true,
       count: vitals.length,
@@ -80,7 +76,6 @@ const getVitals = async (req, res) => {
     });
   }
 };
-
 const getVital = async (req, res) => {
   try {
     const vitalId = req.params.id;
