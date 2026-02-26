@@ -234,9 +234,7 @@ const getVitalsSummary = async (req, res) => {
       message: 'Error fetching vitals summary',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
-  }
-};
-
+  }};
 // Helper function to determine vital status
 const determineVitalStatus = (type, value) => {
   let isNormal = true;
@@ -252,7 +250,6 @@ const determineVitalStatus = (type, value) => {
         severity = value.systolic > 180 || value.diastolic > 110 ? 'critical' : 'high';
       }
       break;
-
     case 'blood_sugar':
       if (value.reading < 70) {
         isNormal = false;
@@ -262,7 +259,6 @@ const determineVitalStatus = (type, value) => {
         severity = value.reading > 200 ? 'critical' : 'high';
       }
       break;
-
     case 'heart_rate':
       if (value.reading < 60 || value.reading > 100) {
         isNormal = false;
@@ -306,9 +302,7 @@ const calculateTrend = (vitals, type) => {
   
   const recent = vitals.slice(0, Math.min(3, vitals.length));
   const older = vitals.slice(-Math.min(3, vitals.length));
-  
   let recentAvg, olderAvg;
-  
   if (type === 'blood_pressure') {
     recentAvg = recent.reduce((sum, v) => sum + v.value.systolic, 0) / recent.length;
     olderAvg = older.reduce((sum, v) => sum + v.value.systolic, 0) / older.length;
@@ -316,9 +310,7 @@ const calculateTrend = (vitals, type) => {
     recentAvg = recent.reduce((sum, v) => sum + v.value.reading, 0) / recent.length;
     olderAvg = older.reduce((sum, v) => sum + v.value.reading, 0) / older.length;
   }
-  
   const change = ((recentAvg - olderAvg) / olderAvg) * 100;
-  
   if (change > 5) return 'increasing';
   if (change < -5) return 'decreasing';
   return 'stable';
