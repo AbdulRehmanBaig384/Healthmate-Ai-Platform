@@ -4,9 +4,6 @@
   
   body {
     @apply bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  
   html {
     scroll-behavior: smooth;
   }
