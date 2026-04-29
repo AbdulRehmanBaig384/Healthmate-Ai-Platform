@@ -23,13 +23,7 @@
   
   .gradient-danger {
     @apply bg-gradient-to-r from-danger-500 to-danger-600;
-  }
-  
-  /* Card styles */
-  .card {
-    @apply bg-white/80 backdrop-blur-sm border border-white/20 rounded-xl shadow-glass;
-  }
-  
+
   .card-hover {
     @apply transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-white/90;
   }
