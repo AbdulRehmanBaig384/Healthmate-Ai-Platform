@@ -5,8 +5,6 @@
   .glass-dark {
     @apply bg-black/10 backdrop-blur-md border border-white/10;
   }
-  
-  /* Gradient backgrounds */
   .gradient-primary {
     @apply bg-gradient-to-r from-primary-500 to-primary-600;
   }
