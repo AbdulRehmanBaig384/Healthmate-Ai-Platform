@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
 const vitalSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+  user:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'User',
+    required:true
   },
+  
   type: {
-    type: String,
-    enum: ['blood_pressure', 'blood_sugar', 'weight', 'heart_rate', 'temperature', 'oxygen_saturation'],
-    required: true
+    type:String,
+    enum:['blood_pressure', 'blood_sugar', 'weight', 'heart_rate', 'temperature', 'oxygen_saturation'],
+    required:true
   },
   value: {
     systolic: Number, 
