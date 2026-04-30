@@ -7,10 +7,9 @@ const uploadReport = async (req, res) => {
     const userId = req.user.id;
 
     if (!req.file || !req.file.path) {
-      return res.status(400).json({
-        success: false,
-        message: "No file uploaded",
-      });
+      return  res.status(400).json({
+        success:false,
+        message:"No file uploaded",});
     }
     const report = await Report.create({
    user: userId,
