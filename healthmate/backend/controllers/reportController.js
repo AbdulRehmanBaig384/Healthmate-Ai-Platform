@@ -152,6 +152,7 @@ const updateReport = async (req, res) => {
       message: "Report updated",
       report,
     });
+    
   } catch (error) {
     console.error("Update report error:", error);
     res.status(500).json({
@@ -160,6 +161,7 @@ const updateReport = async (req, res) => {
     });
   }
 };
+
 const deleteReport = async (req, res) => {
   try {
     const report = await Report.findOneAndDelete({
