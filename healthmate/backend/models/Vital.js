@@ -33,10 +33,10 @@ const vitalSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  severity: {
-    type: String,
-    enum: ['normal', 'low', 'high', 'critical'],
-    default: 'normal'
+  severity:{
+    type:String,
+    enum:['normal', 'low', 'high', 'critical'],
+    default:'normal'
   }
 }, {
   timestamps: true
