@@ -12,12 +12,14 @@ const vitalSchema = new mongoose.Schema({
     enum:['blood_pressure', 'blood_sugar', 'weight', 'heart_rate', 'temperature', 'oxygen_saturation'],
     required:true
   },
+  
   value: {
     systolic: Number, 
     diastolic: Number,
     reading: Number, 
     unit: String
   },
+  
   date: {
     type: Date,
     required: true,
@@ -40,7 +42,6 @@ const vitalSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
-
 vitalSchema.index({ user: 1, date: -1 });
 vitalSchema.index({ user: 1, type: 1, date: -1 });
 vitalSchema.virtual('formattedValue').get(function() {
@@ -49,4 +50,5 @@ vitalSchema.virtual('formattedValue').get(function() {
   }
   return `${this.value.reading} ${this.value.unit}`;
 });
+
 module.exports = mongoose.model('Vital', vitalSchema);
