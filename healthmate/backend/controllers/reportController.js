@@ -22,8 +22,6 @@ const uploadReport = async (req, res) => {
    analysisStatus: "pending",
    aiAnalysis: null,
  });
-
-     // Trigger background analysis
      setImmediate(async () => {
        try {
          const dbReport = await Report.findById(report._id);
