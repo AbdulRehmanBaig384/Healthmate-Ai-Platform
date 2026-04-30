@@ -12,9 +12,7 @@ const uploadReport = async (req, res) => {
         message:"No file uploaded",});
     }
     const report = await Report.create({
-   user: userId,
-   title,
-   type,
+   user: userId,title,type,
    fileUrl: req.file.path,
    fileType: req.file.mimetype,
    fileSize: req.file.size,
