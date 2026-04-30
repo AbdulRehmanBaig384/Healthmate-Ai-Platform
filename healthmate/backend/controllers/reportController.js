@@ -28,17 +28,20 @@ const uploadReport = async (req, res) => {
          if (!dbReport) return;
 
          dbReport.analysisStatus = "processing";
+         
          dbReport.analysisError = null;
+         
          await dbReport.save();
 
          const ocrText = await extractTextFromImage(dbReport.fileUrl, dbReport.fileType);
+         
          dbReport.ocrText = ocrText;
 
          const result = await analyzeMedicalReport(ocrText, dbReport.fileType, dbReport.type, userId);
 
          if (!result.success) {
            dbReport.analysisStatus = "failed";
-           dbReport.analysisError = result.error || "AI analysis failed";
+           dbReport.analysisError = result.error || "ai analysis failed";
            await dbReport.save();
            return;
          }
