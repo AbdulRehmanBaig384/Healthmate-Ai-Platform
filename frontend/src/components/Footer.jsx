@@ -31,8 +31,8 @@ const Footer = () => {
             </motion.div>
             <motion.p
               initial={{y:20, opacity:0}}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 }}
+              whileInView={{y:0,opacity:1}}
+              transition={{delay:0.1 }}
               className="text-white/80 mb-6 max-w-md" >
               {isUrdu 
                 ? 'AI-powered health companion jo aapke medical reports ko analyze karta hai aur health tips deta hai.'
