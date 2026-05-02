@@ -110,14 +110,12 @@ const Footer = () => {
             </div>
           </motion.div>
         </div>
-
         {/* Bottom Bar */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
+          className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/80 text-sm">
             © 2024 HealthMate. {isUrdu ? 'Sab rights reserved.' : 'All rights reserved.'}
           </p>
@@ -132,7 +130,5 @@ const Footer = () => {
         </motion.div>
       </div>
     </motion.footer>
-  )
-}
-
+  )}
 export default Footer
