@@ -54,8 +54,8 @@ const Footer = () => {
           </div>
           
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+            initial={{y:20,opacity:0}}
+            whileInView={{y:0,opacity:1}}
             transition={{ delay: 0.3 }}  >
             <h4 className="text-lg font-semibold mb-4">
               {isUrdu ? 'Quick Links' : 'Quick Links'}
