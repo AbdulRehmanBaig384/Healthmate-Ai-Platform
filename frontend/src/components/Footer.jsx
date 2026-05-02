@@ -83,12 +83,12 @@ const Footer = () => {
               </li>
             </ul>
           </motion.div>
-{/* Contact Informaation  */}
+{/* contact Informaation  */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
+            transition={{ delay: 0.4 }}>
+            
             <h4 className="text-lg font-semibold mb-4">
               {isUrdu ? 'Contact' : 'Contact'}
             </h4>
