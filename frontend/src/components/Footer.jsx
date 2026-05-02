@@ -3,8 +3,8 @@ import { Heart, Mail, Phone, MapPin } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 
 const Footer = () => {
-  const { t, isUrdu } = useLanguage()
-
+  const {t,isUrdu } = useLanguage()
+  
   return (
     <motion.footer 
       initial={{ opacity: 0 }}
