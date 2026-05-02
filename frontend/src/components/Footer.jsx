@@ -7,8 +7,8 @@ const Footer = () => {
   
   return (
     <motion.footer 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{opacity: 0}}
+      whileInView={{opacity: 1}}
       className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white mt-20" >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -16,8 +16,8 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
+              initial={{y:20,opacity:0}}
+              whileInView={{y:0,opacity:1}}
               className="flex items-center space-x-3 mb-4" >
               <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
                 <Heart className="w-7 h-7 text-white" />
@@ -25,12 +25,12 @@ const Footer = () => {
               <div>
                 <h3 className="text-2xl font-bold">HealthMate</h3>
                 <p className="text-white/80 text-sm">
-                  {isUrdu ? 'Sehat ka Smart Dost' : 'Sehat ka Smart Dost'}
+                  {isUrdu?'Sehat ka Smart Dost':'Sehat ka Smart Dost'}
                 </p>
               </div>
             </motion.div>
             <motion.p
-              initial={{ y: 20, opacity: 0 }}
+              initial={{y:20, opacity:0}}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
               className="text-white/80 mb-6 max-w-md" >
