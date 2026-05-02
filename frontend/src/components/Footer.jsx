@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import { Heart, Mail, Phone, MapPin } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext'
+import {Heart,Mail,Phone,MapPin} from 'lucide-react'
+import {useLanguage} from '../context/LanguageContext'
 
 const Footer = () => {
   const {t,isUrdu} = useLanguage()
