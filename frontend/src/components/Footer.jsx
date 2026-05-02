@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import {motion} from 'framer-motion'
 import {Heart,Mail,Phone,MapPin} from 'lucide-react'
 import {useLanguage} from '../context/LanguageContext'
 
@@ -129,6 +129,5 @@ const Footer = () => {
           </div>
         </motion.div>
       </div>
-    </motion.footer>
-  )}
+    </motion.footer>)}
 export default Footer
