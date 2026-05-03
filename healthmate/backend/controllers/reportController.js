@@ -156,24 +156,22 @@ const updateReport = async (req, res) => {
 };
 
 const deleteReport = async (req, res) => {
-  try {
+  try{
     const report = await Report.findOneAndDelete({
       _id: req.params.id,
       user: req.user.id,
     });
 
-    if (!report) {
+    if(!report) {
       return res.status(404).json({
         success: false,
         message: "Report not found",
-      });
-    }
-
+      });}
     res.status(200).json({
       success: true,
       message: "Report deleted",
     });
-  } catch (error) {
+  }catch (error) {
     console.error("Delete report error:", error);
     res.status(500).json({
       success: false,
@@ -181,7 +179,6 @@ const deleteReport = async (req, res) => {
     });
   }
 };
-
 const reanalyzeReport = async (req, res) => {
   try {
     const report = await Report.findOne({
