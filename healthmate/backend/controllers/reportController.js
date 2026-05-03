@@ -85,8 +85,7 @@ const getReports = async (req, res) => {
 
     const skip = (page - 1) * limit;
 
-    const reports = await Report.find(query)
-      .sort({ reportDate: -1 })
+    const reports = await Report.find(query).sort({ reportDate: -1 })
       .skip(skip)
       .limit(Math.min(parseInt(limit), 50));
 
@@ -112,7 +111,7 @@ const getReport = async (req, res) => {
       user: req.user.id,
     });
 
-    if (!report) {
+    if(!report) {
       return res.status(404).json({
         success: false,
         message: "Report not found",
