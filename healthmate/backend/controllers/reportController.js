@@ -35,7 +35,7 @@ const report = await Report.create({
          
          dbReport.ocrText = ocrText;
 
-         const result = await analyzeMedicalReport(ocrText, dbReport.fileType, dbReport.type, userId);
+         const result = await analyzeMedicalReport(ocrText,dbReport.fileType,dbReport.type,userId);
 
          if(!result.success){
            dbReport.analysisStatus = "failed";
