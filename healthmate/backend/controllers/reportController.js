@@ -1,5 +1,5 @@
 const Report = require("../models/Report");
-const { analyzeMedicalReport } = require("../utils/gemini");
+const {analyzeMedicalReport} = require("../utils/gemini");
 const { extractTextFromImage } = require("../utils/ocr");
 const uploadReport = async (req, res) => {
   try {
