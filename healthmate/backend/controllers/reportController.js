@@ -60,13 +60,13 @@ const report = await Report.create({
        }catch(error){
          console.error("Background analysis error:", error);
          await Report.findByIdAndUpdate(report._id, {
-           analysisStatus: "failed",
-           analysisError: error.message.includes("quota") ? "Daily AI usage limit reached. Please try again tomorrow." : error.message,
+           analysisStatus:"failed",
+           analysisError:error.message.includes("quota")?"Daily AI usage limit reached. Please try again tomorrow.":error.message,
          });
        }});
      res.status(201).json({
-       success: true,
-       message: "Report uploaded successfully",
+       success:true,
+       message:"Report uploaded successfully",
        report,
      });
   } catch (error) {
