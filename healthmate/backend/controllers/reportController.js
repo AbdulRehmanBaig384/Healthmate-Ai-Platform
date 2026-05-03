@@ -39,14 +39,14 @@ const report = await Report.create({
 
          if(!result.success){
            dbReport.analysisStatus = "failed";
-           dbReport.analysisError = result.error || "ai analysis failed";
+           dbReport.analysisError = result.error||"ai analysis failed";
            await dbReport.save();
            return;
          }
 
-         if(result.analysis.isMedical === false) {
+         if(result.analysis.isMedical === false){
            dbReport.analysisStatus = "failed";
-           dbReport.analysisError = result.analysis.reason || "Not a medical report";
+           dbReport.analysisError = result.analysis.reason||"Not a medical report";
            await dbReport.save();
            return;
          }
@@ -59,7 +59,7 @@ const report = await Report.create({
 
        }catch(error){
          console.error("Background analysis error:", error);
-         await Report.findByIdAndUpdate(report._id, {
+         await Report.findByIdAndUpdate(report._id,{
            analysisStatus:"failed",
            analysisError:error.message.includes("quota")?"Daily AI usage limit reached. Please try again tomorrow.":error.message,
          });
@@ -69,11 +69,9 @@ const report = await Report.create({
        message:"Report uploaded successfully",
        report,
      });
-  } catch (error) {
+  } catch(error){
     console.error(error);
-    res.status(500).json({ success: false });
-  }
-};
+    res.status(500).json({ success: false });}};
 
 const getReports = async (req, res) => {
   try{
