@@ -3,7 +3,8 @@ const {analyzeMedicalReport}=require("../utils/gemini");
 const {extractTextFromImage}=require("../utils/ocr");
 const uploadReport = async (req, res) => {
   try {
-    const { title, type, reportDate } = req.body;
+    const {title , type, reportDate}=req.body;
+    
     const userId = req.user.id;
 
     if (!req.file || !req.file.path) {
