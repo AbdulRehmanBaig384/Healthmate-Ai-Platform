@@ -9,15 +9,12 @@ const uploadReport = async (req, res) => {
     if (!req.file || !req.file.path) {
       return  res.status(400).json({
         success:false,
-        message:"No file uploaded",});
-    }
-    const report = await Report.create({
-   user: userId,title,type,
-   fileUrl: req.file.path,
-   fileType: req.file.mimetype,
-   fileSize: req.file.size,
+        message:"No file uploaded",});}
+    
+const report = await Report.create({
+   user: userId,title,type, fileUrl: req.file.path,
+   fileType: req.file.mimetype,d fileSize: req.file.size,
    reportDate: new Date(reportDate),
-
    isAnalyzed: false,
    analysisStatus: "pending",
    aiAnalysis: null,
