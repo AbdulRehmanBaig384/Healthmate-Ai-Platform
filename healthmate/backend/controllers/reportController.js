@@ -21,7 +21,7 @@ const report = await Report.create({
    aiAnalysis: null,
  });
      setImmediate(async () => {
-       try {
+       try{
          const dbReport = await Report.findById(report._id);
          if (!dbReport) return;
 
@@ -37,14 +37,14 @@ const report = await Report.create({
 
          const result = await analyzeMedicalReport(ocrText, dbReport.fileType, dbReport.type, userId);
 
-         if (!result.success) {
+         if(!result.success){
            dbReport.analysisStatus = "failed";
            dbReport.analysisError = result.error || "ai analysis failed";
            await dbReport.save();
            return;
          }
 
-         if (result.analysis.isMedical === false) {
+         if(result.analysis.isMedical === false) {
            dbReport.analysisStatus = "failed";
            dbReport.analysisError = result.analysis.reason || "Not a medical report";
            await dbReport.save();
@@ -57,15 +57,13 @@ const report = await Report.create({
          dbReport.analyzedAt = new Date();
          await dbReport.save();
 
-       } catch (error) {
+       }catch(error){
          console.error("Background analysis error:", error);
          await Report.findByIdAndUpdate(report._id, {
            analysisStatus: "failed",
            analysisError: error.message.includes("quota") ? "Daily AI usage limit reached. Please try again tomorrow." : error.message,
          });
-       }
-     });
-
+       }});
      res.status(201).json({
        success: true,
        message: "Report uploaded successfully",
