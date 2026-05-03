@@ -76,11 +76,11 @@ const report = await Report.create({
 };
 
 const getReports = async (req, res) => {
-  try {
+  try{
     const userId = req.user.id;
-    const { type, page = 1, limit = 10 } = req.query;
+    const {type,page=1,limit=10}=req.query;
 
-    const query = { user: userId };
+    const query={ user: userId };
     if (type) query.type = type;
 
     const skip = (page - 1) * limit;
