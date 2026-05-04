@@ -1,7 +1,7 @@
 const Vital = require('../models/Vital');
-const addVital= async(req,res)=> {
-  try {
-    const { type, value, date, time, notes } = req.body;
+const addVital= async(req,res)=>{
+  try{
+    const {type, value, date, time, notes } = req.body;
     const userId = req.user.id;
     if (!type || !value) {
       return res.status(400).json({
