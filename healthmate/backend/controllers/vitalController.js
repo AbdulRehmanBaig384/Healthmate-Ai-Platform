@@ -35,12 +35,12 @@ const addVital= async(req,res)=>{
   }
 };
 const getVitals = async (req, res) => {
-  try {
+  try{
     const userId = req.user.id;
-    const { type, page = 1, limit = 20, startDate, endDate } = req.query;
+    const {type,page=1,limit=20,startDate,endDate}=req.query;
 
-    const query = { user: userId };
-    if (type) {
+    const query ={user:userId};
+    if(type){
       query.type = type;
     }
     if (startDate || endDate) {
