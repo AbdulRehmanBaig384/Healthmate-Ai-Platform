@@ -14,15 +14,15 @@ const addVital= async(req,res)=>{
       user: userId,
       type,
       value,
-      date: date ? new Date(date) : new Date(),
-      time: time || 'morning',
+      date:date?new Date(date):new Date(),
+      time:time||'morning',
       notes,
       isNormal,
       severity
     });
     res.status(201).json({
-      success: true,
-      message: 'Vital reading added successfully',
+      success:true,
+      message:'Vital reading added successfully',
       vital
     });
   } catch (error) {
