@@ -5,8 +5,8 @@ const addVital= async(req,res)=>{
     const userId = req.user.id;
     if (!type || !value) {
       return res.status(400).json({
-        success: false,
-        message: 'Vital type and value are required'
+        success:false,
+        message:'Vital type and value are required'
       });
     }
     const {isNormal,severity}=determineVitalStatus(type, value);
@@ -16,9 +16,7 @@ const addVital= async(req,res)=>{
       value,
       date:date?new Date(date):new Date(),
       time:time||'morning',
-      notes,
-      isNormal,
-      severity
+      notes,isNormal,severity
     });
     res.status(201).json({
       success:true,
@@ -28,12 +26,11 @@ const addVital= async(req,res)=>{
   } catch (error) {
     console.error('Add vital error:', error);
     res.status(500).json({
-      success: false,
-      message: 'Error adding vital reading',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      success:false,
+      message:'Error adding vital reading',
+      error:process.env.NODE_ENV === 'development' ? error.message : undefined
     });
-  }
-};
+  }};
 const getVitals = async (req, res) => {
   try{
     const userId = req.user.id;
