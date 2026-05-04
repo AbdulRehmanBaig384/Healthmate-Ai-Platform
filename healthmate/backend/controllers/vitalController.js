@@ -9,7 +9,7 @@ const addVital= async(req,res)=>{
         message: 'Vital type and value are required'
       });
     }
-    const { isNormal, severity } = determineVitalStatus(type, value);
+    const {isNormal,severity}=determineVitalStatus(type, value);
     const vital = await Vital.create({
       user: userId,
       type,
