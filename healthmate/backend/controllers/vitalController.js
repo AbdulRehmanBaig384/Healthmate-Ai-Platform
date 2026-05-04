@@ -40,12 +40,12 @@ const getVitals = async (req, res) => {
     if(type){
       query.type = type;
     }
-    if (startDate || endDate) {
-      query.date = {};
-      if (startDate) query.date.$gte = new Date(startDate);
-      if (endDate) query.date.$lte = new Date(endDate);
+    if(startDate || endDate){
+      query.date={};
+      if(startDate) query.date.$gte = new Date(startDate);
+      if(endDate) query.date.$lte = new Date(endDate);
     }
-    const skip = (page - 1) * limit;
+    const skip = (page-1)*limit;
 
     // Get vitals with pagination
     const vitals = await Vital.find(query)
