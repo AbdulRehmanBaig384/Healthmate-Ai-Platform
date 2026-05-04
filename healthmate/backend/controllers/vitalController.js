@@ -73,27 +73,24 @@ const getVitals = async (req, res) => {
   }
 };
 const getVital = async (req, res) => {
-  try {
+  try{
     const vitalId = req.params.id;
     const userId = req.user.id;
-
     const vital = await Vital.findOne({
       _id: vitalId,
       user: userId
     });
-
-    if (!vital) {
+            if(!vital) {
       return res.status(404).json({
-        success: false,
-        message: 'Vital reading not found'
+        success:false,
+        message:'Vital reading not found'
       });
     }
-
     res.status(200).json({
       success: true,
       vital
     });
-  } catch (error) {
+  }catch(error){
     console.error('Get vital error:', error);
     res.status(500).json({
       success: false,
