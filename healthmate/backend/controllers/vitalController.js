@@ -63,13 +63,12 @@ const getVitals = async (req, res) => {
         pages: Math.ceil(total / limit)
       },
       vitals
-    });
-  } catch (error) {
+    });}catch(error){
     console.error('Get vitals error:', error);
     res.status(500).json({
-      success: false,
-      message: 'Error fetching vitals',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      success:false,
+      message:'Error fetching vitals',
+      error:process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };
