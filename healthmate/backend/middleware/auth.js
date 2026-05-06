@@ -18,16 +18,13 @@ const protect = async (req, res, next) => {
 
     try{
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      
-      // Get user from token
       const user = await User.findById(decoded.id).select('-password');
       
       if (!user) {
         return res.status(401).json({
           success: false,
           message: 'Token is valid but user no longer exists'
-        });
-      }
+        }); }
 
       req.user=user;
       next();
@@ -61,7 +58,6 @@ const sendTokenResponse = (user, statusCode, res) => {
 
   res.status(statusCode).cookie('token',token,options).json({
       success: true,token,
-      user: {id: user._id, name:user.name, email: user.email, avatar:user.avatar, language: user.language,isVerified: user.isVerified
-      }
+      user: {id: user._id, name:user.name, email: user.email, avatar:user.avatar, language: user.language,isVerified: user.isVerified}
     });};
 module.exports = {protect,generateToken,sendTokenResponse};
