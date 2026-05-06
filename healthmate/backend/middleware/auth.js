@@ -6,7 +6,7 @@ const protect = async (req, res, next) => {
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
       token = req.headers.authorization.split(' ')[1];}
     
-    if (!token && req.cookies.token) {
+    if (!token && req.cookies.token){
       token = req.cookies.token;}
 
     if (!token){
@@ -20,7 +20,7 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const user = await User.findById(decoded.id).select('-password');
       
-      if (!user) {
+      if(!user){
         return res.status(401).json({
           success: false,
           message: 'Token is valid but user no longer exists'
@@ -42,18 +42,18 @@ const protect = async (req, res, next) => {
   }
 };
 // Generate JWT token
-const generateToken = (id) => {
+const generateToken=(id)=>{
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE || '7d'
   });
 };
-const sendTokenResponse = (user, statusCode, res) => {
-  const token = generateToken(user._id);
-  const options = {
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict'
+const sendTokenResponse=(user, statusCode, res) => {
+  const token=generateToken(user._id);
+  const options={
+    expires:new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
+    httpOnly:true,
+    secure:process.env.NODE_ENV === 'production',
+    sameSite:'strict'
   };
 
   res.status(statusCode).cookie('token',token,options).json({
