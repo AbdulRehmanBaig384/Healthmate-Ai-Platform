@@ -10,7 +10,7 @@ const protect = async (req, res, next) => {
       token = req.cookies.token;
     }
 
-    if (!token) {
+    if (!token){
       return res.status(401).json({
         success: false,
         message: 'Access denied. No token provided.'
@@ -31,14 +31,14 @@ const protect = async (req, res, next) => {
         });
       }
 
-      req.user = user;
+      req.user=user;
       next();
     } catch(error){
       return res.status(401).json({
         success: false,
         message: 'Invalid token'
       });}
-  }catch(error) {
+  }catch(error){
     console.error('Auth middleware error:', error);
     return res.status(500).json({
       success: false,
