@@ -33,13 +33,12 @@ const protect = async (req, res, next) => {
 
       req.user = user;
       next();
-    } catch (error) {
+    } catch(error){
       return res.status(401).json({
         success: false,
         message: 'Invalid token'
-      });
-    }
-  } catch (error) {
+      });}
+  }catch(error) {
     console.error('Auth middleware error:', error);
     return res.status(500).json({
       success: false,
@@ -53,11 +52,9 @@ const generateToken = (id) => {
     expiresIn: process.env.JWT_EXPIRE || '7d'
   });
 };
-
 // Send token response
 const sendTokenResponse = (user, statusCode, res) => {
   const token = generateToken(user._id);
-
   const options = {
     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
     httpOnly: true,
