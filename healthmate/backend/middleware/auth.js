@@ -16,8 +16,7 @@ const protect = async (req, res, next) => {
       });
     }
 
-    try {
-      // Verify token
+    try{
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       
       // Get user from token
