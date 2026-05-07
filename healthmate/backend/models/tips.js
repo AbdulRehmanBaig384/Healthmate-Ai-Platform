@@ -9,8 +9,8 @@ const tipsSchema = new mongoose.Schema(
     language:{
       type:String,
       enum:['en','ur'],
-      default: 'en',
-      required: true
+      default:'en',
+      required:true
     },
     tips: {
       type: [String],
