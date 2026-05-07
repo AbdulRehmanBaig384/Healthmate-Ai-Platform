@@ -4,8 +4,8 @@ const tipsSchema = new mongoose.Schema(
   {
     date:{
       type:String, 
-      required:true
-    },
+      required:true},
+    
     language: {
       type: String,
       enum: ['en', 'ur'],
