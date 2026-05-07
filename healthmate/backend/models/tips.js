@@ -12,9 +12,9 @@ const tipsSchema=new mongoose.Schema(
       default:'en',
       required:true
     },
-    tips: {
-      type: [String],
-      required: true
+    tips:{
+      type:[String],
+      required:true
     }
   },
   {
