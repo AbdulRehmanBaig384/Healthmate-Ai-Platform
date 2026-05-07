@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const tipsSchema = new mongoose.Schema(
+const tipsSchema=new mongoose.Schema(
   {
     date:{
       type:String, 
