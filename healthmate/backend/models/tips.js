@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const tipsSchema = new mongoose.Schema(
   {
-    date: {
-      type: String, 
-      required: true
+    date:{
+      type:String, 
+      required:true
     },
     language: {
       type: String,
