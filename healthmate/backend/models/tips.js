@@ -22,4 +22,4 @@ const tipsSchema=new mongoose.Schema(
   }
 );
 tipsSchema.index({date:1,language:1},{unique:true});
-module.exports = mongoose.model('Tips', tipsSchema);
+module.exports = mongoose.model('Tips',tipsSchema);
