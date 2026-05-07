@@ -21,5 +21,5 @@ const tipsSchema=new mongoose.Schema(
     timestamps: true
   }
 );
-tipsSchema.index({ date: 1, language: 1 }, { unique: true });
+tipsSchema.index({date:1,language:1},{ unique: true });
 module.exports = mongoose.model('Tips', tipsSchema);
