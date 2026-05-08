@@ -20,4 +20,4 @@ ${messages.map((m)=>`${m.role}: ${m.message}`).join("\n")}`;
     return{
       success: false,error: error.message,
     };}};
-module.exports={aiDoctorReply };
+module.exports={aiDoctorReply};
