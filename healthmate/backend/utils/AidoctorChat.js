@@ -12,7 +12,7 @@ Rules:
 Conversation:
 ${messages.map((m) => `${m.role}: ${m.message}`).join("\n")}`;
     const result = await model.generateContent(prompt);
-    return {
+    return{
       success: true,
       reply: result.response.text(),
     };
