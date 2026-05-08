@@ -18,7 +18,6 @@ ${messages.map((m) => `${m.role}: ${m.message}`).join("\n")}`;
     };
   }catch(error){
     return{
-      success: false,
-      error: error.message,
+      success: false,error: error.message,
     };}};
 module.exports = { aiDoctorReply };
