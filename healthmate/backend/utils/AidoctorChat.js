@@ -10,8 +10,8 @@ Rules:
 - Be calm and supportive
 - Language: ${language==="ur"?"Roman Urdu":"English"}
 Conversation:
-${messages.map((m) => `${m.role}: ${m.message}`).join("\n")}`;
-    const result = await model.generateContent(prompt);
+${messages.map((m)=>`${m.role}: ${m.message}`).join("\n")}`;
+    const result=await model.generateContent(prompt);
     return{
       success: true,
       reply: result.response.text(),
