@@ -16,7 +16,7 @@ ${messages.map((m) => `${m.role}: ${m.message}`).join("\n")}`;
       success: true,
       reply: result.response.text(),
     };
-  } catch (error) {
+  }catch(error) {
     return {
       success: false,
       error: error.message,
