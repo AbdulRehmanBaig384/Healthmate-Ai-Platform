@@ -1,5 +1,5 @@
 const {model}=require("./client");
-const aiDoctorReply=async(messages, language = "en") => {
+const aiDoctorReply=async(messages,language="en") => {
   try {
     const prompt = `You are a safe AI medical assistant.
 Rules:
