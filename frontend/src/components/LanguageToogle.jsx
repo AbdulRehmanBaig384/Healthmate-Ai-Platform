@@ -56,6 +56,5 @@ const LanguageToggle=()=>{
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  )}
 export default LanguageToggle
