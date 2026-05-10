@@ -6,10 +6,8 @@ import { useLanguage } from '../context/LanguageContext'
 const LanguageToggle=()=>{
   const {language,setLanguage}=useLanguage()
   const [open, setOpen]= useState(false)
-  const ref = useRef(null)
-
-  // Close dropdown on outside click
-  useEffect(() => {
+  const ref=useRef(null)
+  useEffect(()=>{
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setOpen(false)
