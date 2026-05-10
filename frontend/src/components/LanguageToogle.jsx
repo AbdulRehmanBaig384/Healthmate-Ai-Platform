@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
-import { Globe } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import {useState,useRef,useEffect} from 'react'
+import {Globe} from 'lucide-react'
+import {motion,AnimatePresence} from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 
 const LanguageToggle = () => {
