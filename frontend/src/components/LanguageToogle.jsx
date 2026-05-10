@@ -1,11 +1,11 @@
 import {useState,useRef,useEffect} from 'react'
 import {Globe} from 'lucide-react'
 import {motion,AnimatePresence} from 'framer-motion'
-import { useLanguage } from '../context/LanguageContext'
+import {useLanguage} from '../context/LanguageContext'
 
 const LanguageToggle=()=>{
   const {language,setLanguage}=useLanguage()
-  const [open, setOpen]= useState(false)
+  const [open,setOpen]=useState(false)
   const ref=useRef(null)
   useEffect(()=>{
     const handleClickOutside = (e) => {
