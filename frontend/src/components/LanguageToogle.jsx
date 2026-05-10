@@ -4,7 +4,7 @@ import {motion,AnimatePresence} from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 
 const LanguageToggle = () => {
-  const { language, setLanguage } = useLanguage()
+  const {language,setLanguage}=useLanguage()
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
 
