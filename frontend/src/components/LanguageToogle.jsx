@@ -8,13 +8,12 @@ const LanguageToggle=()=>{
   const [open,setOpen]=useState(false)
   const ref=useRef(null)
   useEffect(()=>{
-    const handleClickOutside = (e) => {
+    const handleClickOutside=(e)=>{
       if (ref.current && !ref.current.contains(e.target)) {
         setOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+      }}
+    document.addEventListener('mousedown',handleClickOutside)
+    return ()=>document.removeEventListener('mousedown',handleClickOutside)
   }, [])
 
   const changeLanguage = (lang) => {
