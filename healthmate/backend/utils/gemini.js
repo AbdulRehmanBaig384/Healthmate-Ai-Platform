@@ -115,12 +115,10 @@ Return ONLY JSON array.
   }
 };
 
-const generateFriendlyMessage = async (userLanguage = "en", userName = "User") => {
-  try {
+const generateFriendlyMessage = async(userLanguage="en",userName="User") => {
+  try{
     await waitForQuota();
-
     const model = genAI.getGenerativeModel({ model: BASE_MODEL });
-
     const prompt = `
 Generate 1 friendly health message.
 Name: ${userName}
