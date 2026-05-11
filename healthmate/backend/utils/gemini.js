@@ -2,8 +2,8 @@ const {GoogleGenerativeAI,HarmCategory,HarmBlockThreshold}=require("@google/gene
 const {waitForQuota,checkAndIncrementQuota}=require("./rateLimiter");
 
 // Initialize Gemini
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const BASE_MODEL = "gemini-pro";
+const genAI=new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const BASE_MODEL="gemini-pro";
 const modelConfig = {
   model: BASE_MODEL,
   generationConfig: {
