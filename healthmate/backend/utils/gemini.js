@@ -17,24 +17,18 @@ const modelConfig = {
     { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH },
   ],
 };
-// analysis reports
 const analyzeMedicalReport = async (extractTextFromImage, fileType, reportType, userId) => {
   try {
     if (!extractTextFromImage || extractTextFromImage.length < 10) {
       throw new Error("Extracted text is too short or empty.");
     }
-
     const processedText = extractTextFromImage.slice(0, 15000);
-
-    const prompt = `
-You are a Medical Report Analyzer AI.
-
-TASK:
+    const prompt=`You are a Medical Report Analyzer AI.
+    TASK:
 1. Check if the text is a medical report.
 2. If valid, analyze and summarize.
 
-INPUT:
-${processedText}
+INPUT:${processedText}
 
 OUTPUT (JSON ONLY):
 
