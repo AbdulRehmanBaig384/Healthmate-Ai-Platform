@@ -69,10 +69,10 @@ If medical:
       return{
         success: true,
         analysis: {
-          isMedical: true,
-          analysis: {
-            summary: {
-              english: "Analysis completed but formatting issue occurred.",
+          isMedical:true,
+          analysis:{
+            summary:{
+              english:"Analysis completed but formatting issue occurred.",
               urdu: "Analysis mukammal hui lekin format issue aya."
             },
             abnormalValues: [],
