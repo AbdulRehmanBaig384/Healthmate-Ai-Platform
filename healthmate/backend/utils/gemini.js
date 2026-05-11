@@ -64,7 +64,7 @@ If medical:
     const text=result.response.text();
 
     try{
-      return{ success: true, analysis: JSON.parse(text) };
+      return{success:true,analysis:JSON.parse(text)};
     } catch{
       return{
         success: true,
