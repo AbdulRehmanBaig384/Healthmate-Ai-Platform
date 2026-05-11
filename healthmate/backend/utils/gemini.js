@@ -4,8 +4,8 @@ const {waitForQuota,checkAndIncrementQuota}=require("./rateLimiter");
 // Initialize Gemini
 const genAI=new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const BASE_MODEL="gemini-pro";
-const modelConfig = {
-  model: BASE_MODEL,
+const modelConfig={
+  model:BASE_MODEL,
   generationConfig: {
     responseMimeType: "application/json",
     temperature: 0.2,
