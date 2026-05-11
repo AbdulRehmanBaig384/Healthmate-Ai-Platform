@@ -103,11 +103,11 @@ Return ONLY JSON array.
 `;
 
     const result = await model.generateContent(prompt);
-    return { success: true, tips: JSON.parse(result.response.text()) };
+    return {success: true, tips: JSON.parse(result.response.text()) };
 
-  } catch {
-    return {
-      success: true,
+  }catch{
+    return{
+      success:true,
       tips: userLanguage === "ur"
         ? ["Pani zyada piyen", "Walk karein", "Sabzi khayein"]
         : ["Drink water", "Walk daily", "Eat vegetables"]
