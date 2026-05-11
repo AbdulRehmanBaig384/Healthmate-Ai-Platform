@@ -58,15 +58,15 @@ If medical:
     await checkAndIncrementQuota(userId);
     await waitForQuota(userId);
 
-    const model = genAI.getGenerativeModel(modelConfig);
-    const result = await model.generateContent(prompt);
+    const model=genAI.getGenerativeModel(modelConfig);
+    const result=await model.generateContent(prompt);
 
-    const text = result.response.text();
+    const text=result.response.text();
 
-    try {
-      return { success: true, analysis: JSON.parse(text) };
-    } catch {
-      return {
+    try{
+      return{ success: true, analysis: JSON.parse(text) };
+    } catch{
+      return{
         success: true,
         analysis: {
           isMedical: true,
