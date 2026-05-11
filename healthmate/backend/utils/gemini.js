@@ -85,7 +85,7 @@ If medical:
       };
     }
 
-  } catch (error) {
+}catch(error){
     console.error("Gemini Analysis Error:", error.message);
     return { success: false, error: error.message };
   }
