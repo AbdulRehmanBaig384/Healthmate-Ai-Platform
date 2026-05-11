@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require("@google/generative-ai");
+const {GoogleGenerativeAI,HarmCategory, HarmBlockThreshold } = require("@google/generative-ai");
 const { waitForQuota, checkAndIncrementQuota } = require("./rateLimiter");
 
 // Initialize Gemini
