@@ -27,13 +27,12 @@ const userSchema=new mongoose.Schema({
   },
   language: {
     type: String,
-    enum: ['en', 'ur'],
-    default: 'en'
+    enum: ['en','ur'],
+    default:'en'
   },
-  isVerified: {
-    type: Boolean,
-    default: false
-  },
+  isVerified:{
+    type:Boolean,
+    default:false},
   lastLogin: {
     type: Date,
     default: Date.now
