@@ -52,13 +52,10 @@ userSchema.pre('save', async function(next) {
     next(error);
   }
 });
-
-// Compare password method
 userSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-// Update last login
 userSchema.methods.updateLastLogin = function() {
   this.lastLogin = new Date();
   return this.save();
