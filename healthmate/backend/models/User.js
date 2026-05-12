@@ -25,9 +25,9 @@ const userSchema=new mongoose.Schema({
     type: String,
     default: null
   },
-  language: {
-    type: String,
-    enum: ['en','ur'],
+  language:{
+    type:String,
+    enum:['en','ur'],
     default:'en'
   },
   isVerified:{
@@ -40,7 +40,6 @@ const userSchema=new mongoose.Schema({
 }, {
   timestamps: true
 });
-
 // Hash password before saving
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
