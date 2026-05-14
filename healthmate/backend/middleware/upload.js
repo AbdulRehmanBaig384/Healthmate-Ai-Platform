@@ -34,7 +34,6 @@ const storage=process.env.NODE_ENV === 'production'
       }
     });
 const fileFilter = (req, file, cb) => {
-  // Check file type
   if (file.mimetype.startsWith('image/') || file.mimetype === 'application/pdf') {
     cb(null, true);
   } else {
