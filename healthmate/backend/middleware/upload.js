@@ -58,8 +58,8 @@ const handleUploadError = (error, req, res, next) => {
     }
     if (error.code === 'LIMIT_FILE_COUNT') {
       return res.status(400).json({
-        success: false,
-        message: 'Too many files. Maximum is 1 file per upload.'
+        success:false,
+        message:'too many files. Maximum is 1 file per upload.'
       });
     }
   }
