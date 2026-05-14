@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 // Configure storage
-const storage = process.env.NODE_ENV === 'production'
+const storage=process.env.NODE_ENV === 'production'
   ? new CloudinaryStorage({
       cloudinary: cloudinary,
       params: {
