@@ -14,10 +14,10 @@ const storage=process.env.NODE_ENV === 'production'
       params:{
         folder: 'healthmate/reports',
         resource_type: 'auto',
-        allowed_formats: ['jpg', 'jpeg', 'png', 'pdf'],
-        transformation: [
-          { quality: 'auto' },
-          { fetch_format: 'auto' }
+        allowed_formats: ['jpg','jpeg','png','pdf'],
+        transformation:[
+          {quality:'auto'},
+          {fetch_format:'auto'}
         ]
       }
     })
