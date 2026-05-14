@@ -12,9 +12,9 @@ cloudinary.config({
 });
 // Configure storage
 const storage=process.env.NODE_ENV === 'production'
-  ? new CloudinaryStorage({
-      cloudinary: cloudinary,
-      params: {
+  ?new CloudinaryStorage({
+      cloudinary:cloudinary,
+      params:{
         folder: 'healthmate/reports',
         resource_type: 'auto',
         allowed_formats: ['jpg', 'jpeg', 'png', 'pdf'],
