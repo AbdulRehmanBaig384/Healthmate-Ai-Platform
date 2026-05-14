@@ -38,9 +38,7 @@ const fileFilter = (req, file, cb) => {
     cb(null, true);
   } else {
     cb(new Error('Only images and PDF files are allowed!'), false);
-  }
-};
-// Configure multer
+  }};
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
@@ -65,10 +63,9 @@ const handleUploadError = (error, req, res, next) => {
   }
   if (error.message === 'Only images and PDF files are allowed!') {
     return res.status(400).json({
-      success: false,
-      message: error.message
-    });
-  }
+      success:false,
+      message:error.message
+    });}
   next(error);
 };
 module.exports = {upload,handleUploadError};
