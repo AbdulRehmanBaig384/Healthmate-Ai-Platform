@@ -13,8 +13,8 @@ module.exports.checkAndIncrementQuota = async (userId) => {
   await usage.save();
   return usage.count;
 };
-let userLastCallTimes = new Map(); 
-module.exports.waitForQuota = async (userId, timeout = 30000) => {
+let userLastCallTimes=new Map(); 
+module.exports.waitForQuota=async (userId, timeout = 30000) => {
   const now = Date.now();
   const lastTime = userLastCallTimes.get(userId) || 0;
   const MIN_DELAY = 10000;
