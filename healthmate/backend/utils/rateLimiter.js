@@ -1,7 +1,7 @@
 const ApiUsage=require('../models/ApiUsage');
-const DAILY_LIMIT = 1000; 
+const DAILY_LIMIT=1000; 
 module.exports.checkAndIncrementQuota = async (userId) => {
-  const today = new Date().toISOString().split('T')[0];
+  const today=new Date().toISOString().split('T')[0];
   let usage = await ApiUsage.findOne({ user: userId, date: today });
   if (!usage) {
     usage = new ApiUsage({ user: userId, date: today, count: 0 });
