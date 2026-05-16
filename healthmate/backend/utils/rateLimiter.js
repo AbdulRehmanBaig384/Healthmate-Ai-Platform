@@ -20,7 +20,7 @@ module.exports.waitForQuota=async (userId, timeout = 30000) => {
   const MIN_DELAY = 10000;
   const waitTime = Math.max(0, MIN_DELAY - (now - lastTime));
 
-  if (waitTime > 0) {
+  if (waitTime>0){
     await new Promise(res => setTimeout(res, waitTime));
   }
   userLastCallTimes.set(userId, Date.now());
