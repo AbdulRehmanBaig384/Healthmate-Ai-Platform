@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const {sendTokenResponse}=require('../middleware/auth');
-const register = async (req, res) => {
+const register=async(req,res)=>{
   try {
     const { name, email, password, language } = req.body;
     const existingUser = await User.findOne({ email });
