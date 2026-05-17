@@ -77,16 +77,16 @@ const getMe = async (req, res) => {
         lastLogin: user.lastLogin
       }
     });
-  } catch (error) {
+  } catch(error){
     console.error('Get user error:', error);
     res.status(500).json({
-      success: false,
-      message: 'Error getting user data',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      success:false,
+      message:'Error getting user data',
+      error:process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };
-const updateProfile = async (req, res) => {
+const updateProfile=async (req, res) => {
   try{
     const { name, language, avatar } = req.body;
     const userId = req.user.id;
