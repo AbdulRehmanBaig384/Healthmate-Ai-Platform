@@ -65,14 +65,12 @@ const login = async (req, res) => {
   }
 };
 const getMe = async (req, res) => {
-  try {
+  try{
     const user = await User.findById(req.user.id);
     res.status(200).json({
       success: true,
       user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
+        id: user._id,name: user.name,email: user.email,
         avatar: user.avatar,
         language: user.language,
         isVerified: user.isVerified,
@@ -89,7 +87,7 @@ const getMe = async (req, res) => {
   }
 };
 const updateProfile = async (req, res) => {
-  try {
+  try{
     const { name, language, avatar } = req.body;
     const userId = req.user.id;
     const user = await User.findByIdAndUpdate(
